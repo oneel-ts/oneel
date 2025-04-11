@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center">⚙️ Projeto Fullstack: React + FastAPI + PostgreSQL</h1>
 
-## Getting Started
+<p align="center">
+  <strong>Frontend moderno com React • Backend robusto com Python • Banco estruturado com PostgreSQL</strong>
+</p>
 
-First, run the development server:
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="60" alt="React" />
+  &nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="60" alt="Python" />
+  &nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="60" alt="PostgreSQL" />
+  &nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="60" alt="Next.js" />
+  &nbsp;&nbsp;
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎯 Objetivo
 
-## Learn More
+Construir uma aplicação **escalável, modular e moderna**, com boas práticas de desenvolvimento, pronta para ser levada para produção ou apresentada como case pessoal/profissional.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📐 Estrutura do Projeto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🧱 Base
+- **Frontend:** React + Next.js (TypeScript)
+- **Backend:** Python + FastAPI
+- **Banco de dados:** PostgreSQL
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔌 Comunicação
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- ✅ API REST
+
+---
+
+## 🧠 Funcionalidades do Backend
+
+- ✅ Autenticação & autorização (JWT, OAuth)
+- ✅ Upload de arquivos
+- ✅ Envio de e-mails
+- ✅ Processamentos assíncronos (Celery + Redis)
+- ✅ Integrações com APIs externas
+- ✅ Sistema de pagamentos (Stripe / Mercado Pago)
+
+---
+
+## 🎨 Frontend Features
+
+- ✅ Tailwind CSS + ShadCN (UI moderna)
+- ✅ Formulários dinâmicos com validações
+- ✅ Roteamento com Next.js
+- ✅ Consumo de APIs com Axios/React Query
+- ✅ Estado global (Context API / Zustand)
+- ✅ Design responsivo (mobile-first)
+
+---
+
+## 💾 Armazenamento
+
+- ✅ Local (PostgreSQL)
+
+---
+
+## ⚙️ DevOps & Deploy
+
+- ✅ CI/CD com GitHub Actions
+- ✅ Deploy Frontend: Vercel / Netlify
+- ✅ Deploy Backend: Render / Railway / Fly.io
+
+---
+
+## 🔐 Segurança
+
+- ✅ JWT & OAuth2
+
+---
+
+## 📦 Organização & Padrões
+
+- ✅ Documentação (README)
+
+---
+
+<p align="center">
+  Feito com 💻 por <a href="https://github.com/seu-usuario">João</a>
+</p>
