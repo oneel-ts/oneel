@@ -1,9 +1,9 @@
 import {Fragment} from "react";
-import styles from "./home-page.module.css"
+import styles from "./about-us.module.css"
 import HeaderDefault from "@/src/frontend/components/organisms/home-page-header";
 
 
-export default function HomePage() {
+export default function AboutUs() {
     return (
         <Fragment>
             <section className={styles.container}>

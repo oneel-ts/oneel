@@ -1,16 +1,14 @@
 import {Fragment} from "react";
-import styles from "./home-page.module.css"
+import styles from "./services.module.css"
 import HeaderDefault from "@/src/frontend/components/organisms/home-page-header";
 
 
-export default function HomePage() {
+export default function Services() {
     return (
         <Fragment>
             <section className={styles.container}>
                 <section className={styles.containerBox}>
                     <HeaderDefault/>
-
-
                     {/*<HomePageBanner/>*/}
                     {/*<Brands/>*/}
                     {/*{loading ? (*/}
