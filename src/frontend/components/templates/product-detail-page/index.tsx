@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import HomePageHeader from "@/src/frontend/components/organisms/home-page-header";
+import HeaderDefault from "@/src/frontend/components/organisms/home-page-header";
 import ClotheDetails from "@/src/frontend/components/organisms/clothe-details";
 import styles from "./product-detail-page.module.css";
 import {findClotheById, getAllClothes} from "@/api/axios/api-clothes";
@@ -106,7 +106,7 @@ export default function ProductDetailPage({ clotheId }: Props) {
         <Fragment>
             <div className={styles.container}>
                 <div className={styles.containerBox}>
-                    <HomePageHeader />
+                    <HeaderDefault />
                     <ClotheDetails
                         clothe={clothe}
                         ratingImage={ratingImages}

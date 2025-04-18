@@ -60,7 +60,7 @@
         flex-wrap: wrap;
         color: black;
     }
-}
+
 
 @media (min-width: 1081px) {
     .tabNavigator {

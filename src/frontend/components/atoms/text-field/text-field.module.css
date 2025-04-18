@@ -1,0 +1,8 @@
+.labelTittle{
+    display: flex;
+    font-weight: 600;
+}
+
+.labelText{
+    font-weight: 400;
+}
