@@ -6,14 +6,13 @@
 }
 
 .selectedTab {
-    color: #8A2BE2;
+    color: #4635B1;
     font-weight: 600;
-    text-shadow: 0 0 1px rgba(138, 43, 226, 0.2);
     transition: all 0.3s ease;
 }
 
 .navigateButtons {
-    color: #4B0082;
+    color: #00FF9C;
     transition: all 0.3s ease;
     position: relative;
     display: inline-block;
@@ -21,25 +20,21 @@
 }
 
 .navigateButtons:not(.selectedTab):hover {
-    color: #8A2BE2;
+    color: #4635B1;
     font-weight: 600;
-    text-shadow: 0 0 1px rgba(138, 43, 226, 0.2);
     transform: translateY(-2px);
 }
 
-/* Animação de clique */
 .navigateButtons:active {
     transform: scale(0.92) translateY(1px);
     transition: all 0.1s ease;
 }
 
-/* Garante que a animação de clique funcione também no hover */
 .navigateButtons:not(.selectedTab):hover:active {
     transform: scale(0.92) translateY(-1px);
     transition: all 0.1s ease;
 }
 
-/* Opcional: Adiciona um efeito de ondulação usando pseudo-elemento */
 .navigateButtons::after {
     content: '';
     position: absolute;

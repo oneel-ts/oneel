@@ -3,7 +3,11 @@ import styles from "./home-page-header.module.css"
 import NavigateBar from "@/src/frontend/components/molecules/navigate-bar";
 import ButtonSignUp from "@/src/frontend/components/molecules/button-sign-up";
 
-export default function HeaderDefault() {
+type Props = {
+    handlerOpenForm: () => void;
+}
+
+export default function HeaderDefault({handlerOpenForm}: Props) {
     return (
         <Fragment>
             <section className={styles.containerPage}>
@@ -11,7 +15,7 @@ export default function HeaderDefault() {
                     <div>logo</div>
                     <div className={styles.containerBoxHeader}>
                         <NavigateBar/>
-                        <ButtonSignUp/>
+                        <ButtonSignUp handlerOpenForm={handlerOpenForm}/>
                     </div>
                 </header>
             </section>

@@ -1,0 +1,253 @@
+:root {
+    --primary-glow: #00FF9C;
+    --secondary-glow: #4635B1;
+    --dark-bg: #2A3240;
+    --light-bg: #3C4559;
+    --text-color: #FFFFFF;
+    --animation-speed: 0.6s;
+}
+
+.containerModal {
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--dark-bg), var(--light-bg));
+    border: 1px solid var(--primary-glow);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2),
+    0 0 15px rgba(0, 255, 156, 0.15),
+    0 0 30px rgba(70, 53, 177, 0.1);
+    z-index: 100;
+    padding: 24px;
+    width: 90%;
+    max-width: 450px;
+    max-height: 80vh;
+}
+
+.miniHeaderModal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 255, 156, 0.3);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.containerForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 8px 16px 16px;
+}
+
+.submitButton {
+    margin-top: 16px;
+    background: linear-gradient(to right, var(--primary-glow), var(--secondary-glow));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--animation-speed) ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.submitButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.25);
+}
+
+.submitButton::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0)
+    );
+    transform: rotate(30deg);
+    transition: transform var(--animation-speed) ease;
+}
+
+.submitButton:hover::after {
+    transform: rotate(30deg) translate(80px, -20px);
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes rotateGradient {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Animação para quando o modal é aberto */
+.modalOpen {
+    animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(0, 255, 156, 0.15),
+        0 0 30px rgba(70, 53, 177, 0.1);
+    }
+    100% {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25),
+        0 0 20px rgba(0, 255, 156, 0.25),
+        0 0 40px rgba(70, 53, 177, 0.15);
+    }
+}
+
+.blobBtn {
+    z-index: 1;
+    position: relative;
+    padding: 20px 46px;
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #0505A9;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    transition: color 0.5s;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.blobBtn:before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #0505A9;
+    border-radius: 30px;
+}
+
+.blobBtn:after {
+    content: "";
+    z-index: -2;
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s 0.2s;
+    border-radius: 30px;
+}
+
+.blobBtn:hover {
+    color: #FFFFFF;
+    border-radius: 30px;
+}
+
+.blobBtn:hover:after {
+    transition: all 0.3s;
+    left: 0;
+    top: 0;
+    border-radius: 30px;
+}
+
+.blobBtnInner {
+    z-index: -1;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    background: #ffffff;
+}
+
+.blobBtnBlobs {
+    position: relative;
+    display: block;
+    height: 100%;
+    filter: url('#goo');
+}
+
+.blobBtnBlob {
+    position: absolute;
+    top: 2px;
+    width: 25%;
+    height: 100%;
+    background: #0505A9;
+    border-radius: 100%;
+    transform: translate3d(0, 150%, 0) scale(1.7);
+    transition: transform 0.45s;
+}
+
+@supports(filter: url('#goo')) {
+    .blobBtnBlob {
+        transform: translate3d(0, 150%, 0) scale(1.4);
+    }
+}
+
+.blobBtnBlob:nth-child(1) {
+    left: 0%;
+    transition-delay: 0s;
+}
+
+.blobBtnBlob:nth-child(2) {
+    left: 30%;
+    transition-delay: 0.08s;
+}
+
+.blobBtnBlob:nth-child(3) {
+    left: 60%;
+    transition-delay: 0.16s;
+}
+
+.blobBtnBlob:nth-child(4) {
+    left: 90%;
+    transition-delay: 0.24s;
+}
+
+.blobBtn:hover .blobBtnBlob {
+    transform: translateZ(0) scale(1.7);
+}
+
+@supports(filter: url('#goo')) {
+    .blobBtn:hover .blobBtnBlob {
+        transform: translateZ(0) scale(1.4);
+    }
+}
+
+.buttonsContainer {
+    margin-top: 20px;
+    text-align: center;
+}

@@ -7,9 +7,9 @@ import { orbitron } from "@/src/frontend/styles/fonts";
 
 const navigationItems = [
     { id: "home", label: "Home", path: "/" },
-    { id: "about", label: "About Us", path: "/about-us" },
     { id: "services", label: "Services", path: "/services" },
     { id: "projects", label: "Projects", path: "/projects" },
+    { id: "about", label: "About Us", path: "/about-us" },
     { id: "team", label: "Team", path: "/team" },
 ];
 
