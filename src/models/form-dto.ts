@@ -4,5 +4,4 @@ export default interface FormDTO {
     email: string;
     services: string;
     projectDescription: string;
-    zipCode: string;
 }

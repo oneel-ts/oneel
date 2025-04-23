@@ -1,6 +1,7 @@
 import {Fragment} from "react";
 import styles from "./projects.module.css"
 import HeaderDefault from "@/src/frontend/components/organisms/home-page-header";
+import Footer from "@/src/frontend/components/organisms/footer";
 
 
 export default function Projects() {
@@ -83,7 +84,7 @@ export default function Projects() {
                     {/*)}*/}
                     {/*<BrowseStyle/>*/}
                     {/*<GoodReviews/>*/}
-                    {/*<Footer/>*/}
+                    <Footer/>
                 </section>
             </section>
         </Fragment>

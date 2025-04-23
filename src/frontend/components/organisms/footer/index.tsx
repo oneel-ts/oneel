@@ -1,8 +1,10 @@
+"use client";
+
 import styles from "./footer.module.css";
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import {Facebook, Instagram, Twitter} from "@mui/icons-material";
+import {Instagram, Twitter} from "@mui/icons-material";
 import IconFacebook from "@/src/frontend/components/atoms/facebook";
 import IconGithub from "@/src/frontend/components/atoms/icon-github";
 
