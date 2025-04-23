@@ -11,11 +11,10 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 
 type Props = {
     clothes: ProductDTO[],
-    onTypeSelect: (type: string) => void,
     selectedTypes: string[]
 };
 
-export default function TypeFilter({ clothes, onTypeSelect, selectedTypes }: Props) {
+export default function TypeFilter({ clothes, selectedTypes }: Props) {
     const types = Array.from(new Set(clothes.map((clothe: ProductDTO) => clothe.clothe_type)));
 
     return (
@@ -66,7 +65,6 @@ export default function TypeFilter({ clothes, onTypeSelect, selectedTypes }: Pro
                             <div
                                 className={`${styles.filterType} ${selectedTypes.includes(type) ? styles.selected : ""}`}
                                 key={index}
-                                onClick={() => onTypeSelect(type)}
                             >
                                 <span>{type}</span>
                                 <IconArrowRigth/>

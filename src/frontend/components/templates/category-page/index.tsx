@@ -1,6 +1,5 @@
 import {Fragment, useEffect, useState} from "react";
 import styles from "./category-page.module.css"
-import Footer from "@/src/frontend/components/organisms/footer";
 import HeaderDefault from "@/src/frontend/components/organisms/home-page-header";
 import CategoryClothes from "@/src/frontend/components/organisms/category-clothes";
 import {getAllClothes} from "@/api/axios/api-clothes";
@@ -67,7 +66,7 @@ export default function CategoryPage({categoryType} : Props) {
                         clotheImage={images}
                         ratingImage={ratingImages}
                     />
-                    <Footer/>
+
                 </section>
             </section>
         </Fragment>

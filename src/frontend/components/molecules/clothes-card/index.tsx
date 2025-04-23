@@ -10,21 +10,12 @@ type Props = {
     ratingImage: string;
 }
 
-export default function ClothesCard ({ index, handlerProductDetails, product, clotheImage, ratingImage }: Props) {
+export default function ClothesCard ({ index, handlerProductDetails, product }: Props) {
     return (
         <Fragment>
             <article key={index} onClick={() => handlerProductDetails?.(product.id)} className={styles.containerArrival}>
-                <img
-                    src={clotheImage}
-                    alt={product.name}
-                    className={styles.productImage}
-                />
                 <h1 className={styles.productTitle}>{product.name}</h1>
                 <section className={styles.containerRating}>
-                    <img
-                        src={ratingImage}
-                        alt="rating"
-                    />
                     <h3>{product.rating}/5</h3>
                 </section>
                 <section className={styles.containerPrices}>

@@ -8,10 +8,9 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 type Props = {
     review: ReviewsDTO;
     index: number;
-    ratingImage: { [id: string]: string };
 }
 
-export default function CardReview ({review, index, ratingImage} : Props) {
+export default function CardReview ({review, index} : Props) {
     const formattedDate = review.review_date
         ? format(new Date(review.review_date), "MMMM dd, yyyy", { locale: enUS })
         : "Invalid Date";
@@ -20,7 +19,6 @@ export default function CardReview ({review, index, ratingImage} : Props) {
         <Fragment>
             <section key={review.id ?? index} className={styles.containerReview}>
                 <section className={styles.dataReview}>
-                    <img className={styles.ratingImage} src={ratingImage[review.id]} alt="Rating" />
                     <div className={styles.userContainer}>
                         <p className={styles.title}>{review.user_name}</p>
                         <CheckCircleIcon style={{ color: "#01AB31" }}/>

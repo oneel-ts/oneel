@@ -89,10 +89,8 @@ export default function GoodReviews() {
                             return (
                                 <article key={cardIndex} className={styles.cardReviews}>
                                     <section className={styles.containerBoxReviews}>
-                                        <img src={review.ratingImage} alt="review" />
                                         <section className={styles.dataReviewer}>
                                             <h1 className={styles.titleReviewer}>{review.name}</h1>
-                                            <img src={review.checkedImage} alt="checked" />
                                         </section>
                                         <h3 className={styles.reviewText}>{review.review}</h3>
                                     </section>

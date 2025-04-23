@@ -10,14 +10,13 @@ type Props = {
     ratingImage: string;
 }
 
-export default function ClothesInfos ({clothe, ratingImage} : Props) {
+export default function ClothesInfos ({clothe} : Props) {
 
     return (
         <Fragment>
             <section className={styles.infoContainer}>
                 <h1 className={styles.clotheName}>{clothe?.name}</h1>
                 <section className={styles.ratingContainer}>
-                    {ratingImage && <img className={styles.ratingImage} src={ratingImage} alt={"rating"}/>}
                     <div className={styles.rating}>{clothe?.rating}<h4 className={styles.ratingMax}>/5</h4></div>
                 </section>
                 <section className={styles.valuesContainer}>

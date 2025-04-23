@@ -1,4 +1,4 @@
-:root {
+.container :global(:root) {
     --primary-glow: #00FF9C;
     --secondary-glow: #4635B1;
     --dark-bg: #2A3240;

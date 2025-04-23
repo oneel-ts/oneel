@@ -37,7 +37,6 @@ const handlerViewStyles = (topic : string) => {
                     <section className={styles.cardTopicsBrowse}>
                         {topics.map((topic, index) => (
                             <section onClick={() => handlerViewStyles(topic.topic)} key={index} className={styles.containerTopics}>
-                                <img className={styles.topicImage} src={topic.image} alt={topic.topic} />
                                 <h2 className={styles.topic}>{topic.topic}</h2>
                             </section>
                         ))}

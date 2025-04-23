@@ -9,8 +9,6 @@ import AllReviews from "@/src/frontend/components/organisms/all-reviews";
 import {getAllReviews} from "@/api/axios/api-reviews";
 import ReviewsDTO from "@/src/models/reviews-dto";
 import ClothesSection from "@/src/frontend/components/organisms/clothes-section";
-import ProductsDTO from "@/src/models/products-dto";
-import Footer from "@/src/frontend/components/organisms/footer";
 import { useRouter } from "next/navigation";
 import Skeleton from "@mui/material/Skeleton";
 
@@ -23,7 +21,6 @@ export default function ProductDetailPage({ clotheId }: Props) {
     const [clotheImage, setClotheImage] = useState<{ [id: string]: string }>({});
     const [ratingImages, setRatingImages] = useState<{ [id: string]: string }>({});
     const [reviews, setReviews] = useState<ReviewsDTO[]>([]);
-    const [ratingUserImage, setRatingUserImage] = useState<{ [id: string]: string }>({});
     const [alsoLikeClothes, setAlsoLikeClothes] = useState<ProductDTO[]>([]);
     const [images, setImages] = useState<{ [id: string]: string }>({});
     const [loading, setLoading] = useState(true);
@@ -69,7 +66,6 @@ export default function ProductDetailPage({ clotheId }: Props) {
                 );
 
                 setReviews(dataReviews);
-                setRatingUserImage(ratingsReviewMap);
 
                 const dataClothes = await getAllClothes();
                 await Promise.all(
@@ -114,7 +110,6 @@ export default function ProductDetailPage({ clotheId }: Props) {
                     />
                     <AllReviews
                         dataReviews={reviews}
-                        ratingImage={ratingUserImage}
                     />
                     <section className={styles.alsoLikeSection}>
                         {loading ? (
@@ -152,8 +147,6 @@ export default function ProductDetailPage({ clotheId }: Props) {
                             />
                         )}
                     </section>
-
-                    <Footer />
                 </div>
             </div>
         </Fragment>

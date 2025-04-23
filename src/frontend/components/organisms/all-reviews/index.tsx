@@ -4,16 +4,15 @@ import FloatTabNavigator from "@/src/frontend/components/molecules/float-tab-nav
 import ReviewsDTO from "@/src/models/reviews-dto";
 
 type Props = {
-    ratingImage: { [id: string]: string };
     dataReviews?: ReviewsDTO[];
 }
 
-export default function AllReviews ({dataReviews, ratingImage} : Props) {
+export default function AllReviews ({dataReviews} : Props) {
     return (
         <Fragment>
             <section className={styles.container}>
                 <section className={styles.containerBox}>
-                    <FloatTabNavigator dataReviews={dataReviews} ratingImage={ratingImage}/>
+                    <FloatTabNavigator dataReviews={dataReviews}/>
                 </section>
             </section>
         </Fragment>
