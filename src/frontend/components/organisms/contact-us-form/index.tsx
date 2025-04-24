@@ -80,10 +80,12 @@ export default function ContactUsForm ({}) {
         
         setResetTrigger(prev => prev + 1);
     };
-
+    
     useEffect(() => {
-        emailjs.init("V56g0a6jNQKQKU1SK");
-        
+        emailjs.init("T1-6FPAIvihuaEqn7");
+    }, []);
+    
+    useEffect(() => {        
         const allFieldsFilled = Object.values(formData).every(value => value.length > 0);
         const allFieldsValid = Object.values(formValidity).every(valid => valid);
         
@@ -103,10 +105,10 @@ export default function ContactUsForm ({}) {
                 };
 
                 const response = await emailjs.send(
-                    'service_25xsq5b',
-                    'template_c6hegfr',
+                    'service_9xmh7qn',
+                    'template_qgu218k',
                     templateParams,
-                    'V56g0a6jNQKQKU1SK'
+                    'T1-6FPAIvihuaEqn7'
                 );
 
                 console.log('E-mail enviado com sucesso!', response);
@@ -144,7 +146,7 @@ export default function ContactUsForm ({}) {
     return (
         <Fragment>
             <ToastContainer/>
-            <div id={"contact-form"} className={styles.containerModal}>
+            <div className={styles.containerModal}>
                 <div className={styles.miniHeaderModal}>
                     <div>Contact Request Form</div>
                 </div>
@@ -159,15 +161,6 @@ export default function ContactUsForm ({}) {
                         onChange={(value) => handleInputChange('name', value)}
                     />
                     <InputField
-                        key={`telephone-${resetTrigger}`}
-                        nameField={'Telephone'}
-                        typeInput={"tel"}
-                        placeholder={"put your phone number with DDD"}
-                        fieldIcon={<LocalPhoneIcon/>}
-                        value={formData.telephone}
-                        onChange={(value) => handleInputChange('telephone', value)}
-                    />
-                    <InputField
                         key={`email-${resetTrigger}`}
                         nameField={'E-mail'}
                         typeInput={"email"}
@@ -175,6 +168,15 @@ export default function ContactUsForm ({}) {
                         fieldIcon={<EmailIcon/>}
                         value={formData.email}
                         onChange={(value) => handleInputChange('email', value)}
+                    />
+                    <InputField
+                        key={`telephone-${resetTrigger}`}
+                        nameField={'Telephone'}
+                        typeInput={"tel"}
+                        placeholder={"put your phone number with DDD"}
+                        fieldIcon={<LocalPhoneIcon/>}
+                        value={formData.telephone}
+                        onChange={(value) => handleInputChange('telephone', value)}
                     />
                     <SelectField
                         key={`services-${resetTrigger}`}
