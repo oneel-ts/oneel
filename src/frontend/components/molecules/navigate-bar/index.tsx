@@ -33,15 +33,14 @@ export default function NavigateBar() {
     return (
         <nav className={`${styles.containerNavigation} ${orbitron.className}`}>
             {navigationItems.map((item) => (
-                <Link
-                    href={item.path}
+                <div
                     key={item.id}
                     onClick={() => handleNavClick(item.id)}
                 >
                     <div className={activeTab === item.id ? styles.selectedTab : styles.navigateButtons}>
                         {item.label}
                     </div>
-                </Link>
+                </div>
             ))}
         </nav>
     );
