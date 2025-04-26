@@ -1,53 +1,26 @@
 .container {
     width: 100%;
     height: 100vh;
+    background-image: url('../../../../../public/assets/wave-technological-hd.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     overflow-y: auto;
     overflow-x: hidden;
-    background: #400f69;
-    background: linear-gradient(135deg, rgba(64, 15, 105, 1) 0%, rgba(32, 10, 54, 1) 25%, rgba(0, 0, 0, 1) 50%, rgba(9, 43, 21, 1) 75%, rgba(18, 105, 53, 1) 100%);
 }
 
 .containerBox {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
 }
 
-.containerSkeleton {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
+.contentContainer {
+    width: 1280px;
+    background: #121bb6;
 
-.skeletonContainer {
-    width: 100%;
-    padding: 20px;
-}
-
-.skeletonGrid {
-    margin-top: 48px;
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-}
-
-.skeletonCard {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.alsoLikeSection {
-    margin-top: 40px;
-}
-
-.sectionTitle {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    padding: 0 20px;
 }

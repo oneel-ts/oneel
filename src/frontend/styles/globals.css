@@ -6,3 +6,14 @@
     transition-duration: .6s;
     transition-timing-function: ease;
 }
+
+:root {
+    --primary: #2d3e50; /* Azul escuro */
+    --secondary: #6e5cea; /* Roxo tecnológico */
+    --accent: #0fd4c1; /* Turquesa vibrante */
+    --accent-glow: rgba(15, 212, 193, 0.2);
+    --text: #e9ecef;
+    --hover: #fd7e14; /* Laranja para destaque */
+    --background: #1a1b26; /* Fundo escuro estilo IDE */
+    --glass-effect: rgba(255, 255, 255, 0.05);
+}

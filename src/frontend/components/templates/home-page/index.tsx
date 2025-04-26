@@ -9,7 +9,10 @@ export default function HomePage() {
             <section className={styles.container}>
                 <section className={styles.containerBox}>
                     <HeaderDefault/>
-                    {/*<ContactUsForm/>*/}
+                    <div className={styles.contentContainer}>
+
+                    </div>
+                {/*    /!*<ContactUsForm/>*!/*/}
                 </section>
             </section>
         </Fragment>
