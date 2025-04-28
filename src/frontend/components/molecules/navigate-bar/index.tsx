@@ -2,7 +2,7 @@
 
 import { useState} from "react";
 import styles from "./navigate-bar.module.css";
-import { orbitron } from "@/src/frontend/styles/fonts";
+import { poppins } from "@/src/frontend/styles/fonts";
 
 const navigationItems = [
     { id: "home", label: "Home"},
@@ -21,7 +21,7 @@ export default function NavigateBar() {
     };
 
     return (
-        <div className={`${styles.containerNavigation} ${orbitron.className}`}>
+        <div className={`${styles.containerNavigation} ${poppins.className}`}>
             {navigationItems.map((item) => (
                 <div
                     key={item.id}

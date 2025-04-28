@@ -21,6 +21,6 @@
 
 .contentContainer {
     width: 1280px;
-    background: #121bb6;
-
+    display: flex;
+    justify-content: center;
 }

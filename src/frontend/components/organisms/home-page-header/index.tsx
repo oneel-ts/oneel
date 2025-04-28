@@ -15,7 +15,9 @@ export default function HeaderDefault() {
         <Fragment>
             <section className={styles.containerPage}>
                 <header className={styles.containerHeader}>
-                    <div><Image src={oneel} alt={"oneel"} width={180} height={48} style={{borderRadius:"16px"}}/></div>
+                    <div>
+                        <Image src={oneel} alt={"oneel"} width={180} height={48} style={{borderRadius:"16px"}}/>
+                    </div>
                         <NavigateBar/>
                         <ButtonSignUp handlerOpenForm={handlerOpenForm}/>
                 </header>

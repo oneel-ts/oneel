@@ -1,0 +1,118 @@
+.textContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+    box-sizing: border-box;
+    gap: 32px;
+}
+
+.title {
+    width: 50%;
+    text-align: center;
+    font-size: 38px;
+    line-height: 48px;
+    font-weight: 700;
+}
+
+.subtitle {
+    width: 70%;
+    font-size: 22px;
+    line-height: 32px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.serviceButton {
+    width: 200px;
+    height: 50px;
+    background: linear-gradient(135deg, #4e43e0 0%, #4361ee 100%);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(67, 97, 238, 0.5);
+    letter-spacing: 0.6px;
+}
+
+.serviceButton::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0.5));
+    transition: width 0.4s ease;
+}
+
+.serviceButton:hover {
+    background: linear-gradient(135deg, #5a4ff4 0%, #4a6ef9 100%);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 30px rgba(67, 97, 238, 0.6);
+    letter-spacing: 1px;
+}
+
+.serviceButton:hover::before {
+    width: 100%;
+}
+
+.serviceButton:active {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Efeito de pulsação sutil */
+@keyframes glow {
+    0% {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(67, 97, 238, 0.5);
+    }
+    50% {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 30px rgba(67, 97, 238, 0.7);
+    }
+    100% {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(67, 97, 238, 0.5);
+    }
+}
+
+.serviceButton {
+    animation: glow 3s infinite ease-in-out;
+}
+
+.serviceButton::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            to right,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent
+    );
+    transform: rotate(30deg);
+    transition: 0.6s;
+}
+
+.serviceButton:hover::after {
+    transform: rotate(30deg) translate(50%, 50%);
+}
+
+@media (max-width: 768px) {
+    .serviceButton {
+        width: 180px;
+        height: 45px;
+        font-size: 15px;
+    }
+}
