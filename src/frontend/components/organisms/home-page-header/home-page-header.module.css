@@ -9,6 +9,7 @@
 .containerHeader {
     width: calc(100% - 64px);
     display: flex;
+    position: fixed;
     justify-content: space-between;
     align-items: center;
     margin-top: 24px;
@@ -20,4 +21,5 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    z-index: 1;
 }

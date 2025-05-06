@@ -1,0 +1,288 @@
+.containerContent {
+    width: 100%;
+    max-width: 1280px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    box-sizing: border-box;
+    margin: 12vh;
+    position: relative;
+}
+
+.containerBox {
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    gap: 75px;
+    box-sizing: border-box;
+}
+
+.containerTitle {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(20px, 3vw, 28px);
+    padding-top: 10px;
+}
+
+.propostaContainer {
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.propostaTitulo {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-top: 0;
+    margin-bottom: 5px;
+    background: linear-gradient(90deg, #4e81eb, #8a68e9);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: 700;
+    padding: 0 10px;
+}
+
+.propostaTexto {
+    font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+    line-height: 1.4;
+    color: #e0e0e0;
+    padding: 0 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.servicosGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+}
+
+.servicoCard {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: 10px 8px;
+    box-sizing: border-box;
+}
+
+.servicoCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.servicoIcone {
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
+    margin-bottom: 0.6rem;
+    color: #6d9aff;
+    background: rgba(109, 154, 255, 0.1);
+    width: clamp(55px, 7vw, 65px);
+    height: clamp(55px, 7vw, 65px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(109, 154, 255, 0.3);
+}
+
+.servicoTitulo {
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
+    height: 2.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.servicoLista {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.servicoItem {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+    color: #dadada;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.servicoItem:last-child {
+    border-bottom: none;
+}
+
+.tituloTecnologico {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  text-align: center;
+  margin: 0;
+  background: linear-gradient(90deg, #3a7bd5, #5a67d8, #6b46c1, #3a7bd5);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradientFlow 8s ease infinite, glowEffect 3s ease-in-out infinite alternate;
+  text-shadow: 0 0 15px rgba(58, 123, 213, 0.3);
+  letter-spacing: 1px;
+  position: relative;
+  padding: 10px 0;
+}
+
+.tituloTecnologico::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(90, 103, 216, 0.7), transparent);
+  border-radius: 2px;
+}
+
+.tituloTecnologico::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  filter: blur(8px);
+  color: #5a67d8;
+  animation: pulseEffect 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes glowEffect {
+  0% {
+    text-shadow: 0 0 5px rgba(58, 123, 213, 0.3);
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(90, 103, 216, 0.5), 0 0 25px rgba(107, 70, 193, 0.3);
+  }
+}
+
+@keyframes pulseEffect {
+  0%, 100% {
+    opacity: 0.05;
+    filter: blur(8px);
+  }
+  50% {
+    opacity: 0.1;
+    filter: blur(12px);
+  }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1280px) {
+    .containerContent {
+        width: 90%;
+    }
+
+    .servicosGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1080px) {
+    .servicosGrid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.8rem;
+    }
+
+    .servicoCard {
+        padding: 8px 6px;
+    }
+
+    .propostaContainer {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .servicosGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.7rem;
+    }
+
+    .propostaTitulo {
+        font-size: 1.4rem;
+    }
+
+    .servicoCard {
+        width: 100%;
+        padding: 8px 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .servicosGrid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .servicoIcone {
+        width: 40px;
+        height: 40px;
+    }
+
+    .servicoTitulo {
+        font-size: 0.9rem;
+    }
+
+    .servicoItem {
+        font-size: 0.7rem;
+        padding: 0.3rem 0;
+    }
+}

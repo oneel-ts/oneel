@@ -1,26 +1,58 @@
 .container {
     width: 100%;
-    height: 100vh;
-    background-image: url('../../../../../public/assets/wave-technological-hd.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
     overflow-x: hidden;
+    position: relative;
 }
 
 .containerBox {
     width: 100%;
+    min-height: 100vh;
+    background-image: url('../../../../../public/assets/wave-technological-hd.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .contentContainer {
     width: 1280px;
+    gap: 10vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding-top: 17vh;
+}
+
+.containerCards {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+
+.containerService {
+    width: 100%;
+    height: 100%;
+    gap: 10vh;
+    background-image: linear-gradient(to bottom,
+    #0c1128 0%,
+    #131a3d 60%,
+    #192050 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
 }
