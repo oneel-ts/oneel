@@ -7,7 +7,6 @@ import {poppins} from "@/src/frontend/styles/fonts";
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import ScheduleIcon from '@mui/icons-material/Schedule';
-import TextField from "../../atoms/text-field";
 import Services from "@/src/frontend/components/organisms/services";
 
 type cardsDto = {
@@ -36,14 +35,27 @@ export default function Brands() {
         }
     ]
 
+    const handlerOpenForm = () => {
+
+    }
+
+    const viewOurServices = () => {
+        const element = document.getElementById('services');
+        if (element) {
+            element.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+    }
 
     return (
         <Fragment>
             <section className={`${styles.container} ${poppins.className}`}>
-                <section className={styles.containerBox}>
-                    <HeaderDefault/>
+                <HeaderDefault handlerOpenForm={handlerOpenForm}/>
+                <section id={"home"} className={styles.containerBox}>
                     <div className={styles.contentContainer}>
-                        <Banner/>
+                        <Banner viewOurServices={viewOurServices}/>
                         <div className={styles.containerCards}>
                             {cardsInfos.map((card, index) => (
                                 <CardsHome
@@ -56,7 +68,7 @@ export default function Brands() {
                         </div>
                     </div>
                 </section>
-                <div className={styles.containerService}>
+                <div id={"services"} className={styles.containerService}>
                     <Services/>
                 </div>
             </section>

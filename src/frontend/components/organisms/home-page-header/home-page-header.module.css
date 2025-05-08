@@ -8,6 +8,7 @@
 
 .containerHeader {
     width: calc(100% - 64px);
+    height: 90px;
     display: flex;
     position: fixed;
     justify-content: space-between;
@@ -22,4 +23,32 @@
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     z-index: 1;
+}
+
+.animationContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 220px;
+    overflow: hidden;
+}
+
+.centralImage {
+    position: absolute;
+    z-index: 1;
+}
+
+.leftArrow, .rightArrow {
+    position: absolute;
+    z-index: 2;
+}
+
+.leftArrow {
+    left: 60px;
+}
+
+.rightArrow {
+    right: 60px;
 }
