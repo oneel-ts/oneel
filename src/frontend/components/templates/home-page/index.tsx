@@ -8,6 +8,7 @@ import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import Services from "@/src/frontend/components/organisms/services";
+import Projects from "@/src/frontend/components/organisms/projects";
 
 type cardsDto = {
     icon: JSX.Element;
@@ -68,8 +69,9 @@ export default function Brands() {
                         </div>
                     </div>
                 </section>
-                <div id={"services"} className={styles.containerService}>
-                    <Services/>
+                <div className={styles.containerService}>
+                    <Services id={"services"}/>
+                    <Projects id={"projects"}/>
                 </div>
             </section>
         </Fragment>
