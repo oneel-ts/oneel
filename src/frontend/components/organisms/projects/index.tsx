@@ -1,4 +1,4 @@
-import {Fragment, useState, useEffect} from "react";
+import {Fragment, useState} from "react";
 import styles from "./projects.module.css";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
@@ -18,36 +18,77 @@ type Props = {
 export default function Projects ({id} : Props) {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [loaded, setLoaded] = useState(false);
-    const [sliderRef, instanceRef] = useKeenSlider({
-        initial: 0,
-        slideChanged(slider) {
-            setCurrentSlide(slider.track.details.rel);
+    const [isFirstSlide, setIsFirstSlide] = useState(true);
+    const [isLastSlide, setIsLastSlide] = useState(false);
+    
+    const [sliderRef, instanceRef] = useKeenSlider(
+        {
+            initial: 0,
+            slides: {
+                perView: 1,
+                spacing: 0,
+            },
+            loop: false,
+            mode: "free-snap",
+            dragSpeed: 1.5,
+            slideChanged(slider) {
+                const slideIndex = slider.track.details.rel;
+                setCurrentSlide(slideIndex);
+                setIsFirstSlide(slideIndex === 0);
+                setIsLastSlide(slideIndex === slider.track.details.slides.length - 1);
+            },
+            created(slider) {
+                setLoaded(true);
+                setIsFirstSlide(true);
+                setIsLastSlide(slider.track.details.slides.length <= 1);
+            },
+            defaultAnimation: {
+                duration: 400,
+                easing: t => t * (2 - t)
+            },
+            rubberband: false,
         },
-        created() {
-            setLoaded(true);
-        },
-        slides: {
-            perView: 1,
-            spacing: 0,
-        },
-        loop: true,
-        mode: "snap",
-        dragSpeed: 1.2,
-    });
-
-    const [paused, setPaused] = useState(false);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (!paused && instanceRef.current) {
-                instanceRef.current.next();
+        [
+            (slider) => {
+                let timeout: ReturnType<typeof setTimeout>;
+                let mouseOver = false;
+                
+                function clearNextTimeout() {
+                    clearTimeout(timeout);
+                }
+                
+                function nextTimeout() {
+                    clearTimeout(timeout);
+                    if (mouseOver) return;
+                    timeout = setTimeout(() => {
+                        if (!isLastSlide) {
+                            slider.next();
+                        } else {
+                            slider.moveToIdx(0);
+                        }
+                    }, 5000);
+                }
+                
+                slider.on("created", () => {
+                    nextTimeout();
+                });
+                
+                slider.on("dragStarted", clearNextTimeout);
+                slider.on("animationEnded", nextTimeout);
+                slider.on("updated", nextTimeout);
+                
+                slider.container.addEventListener("mouseenter", () => {
+                    mouseOver = true;
+                    clearNextTimeout();
+                });
+                
+                slider.container.addEventListener("mouseleave", () => {
+                    mouseOver = false;
+                    nextTimeout();
+                });
             }
-        }, 5000);
-
-        return () => {
-            clearInterval(interval);
-        };
-    }, [instanceRef, paused]);
+        ]
+    );
 
     const projects = [
         {
@@ -96,11 +137,7 @@ export default function Projects ({id} : Props) {
                         <h1 className={styles.techTitle}>Projects and Technologies</h1>
                     </div>
 
-                    <div
-                        className={`${styles.sliderContainer} navigation-wrapper`}
-                        onMouseEnter={() => setPaused(true)}
-                        onMouseLeave={() => setPaused(false)}
-                    >
+                    <div className={`${styles.sliderContainer} navigation-wrapper`}>
                         <div ref={sliderRef} className="keen-slider">
                             {projects.map((project) => (
                                 <div
@@ -130,7 +167,7 @@ export default function Projects ({id} : Props) {
                                         e.stopPropagation();
                                         instanceRef.current?.prev();
                                     }}
-                                    disabled={!instanceRef.current.options.loop && currentSlide === 0}
+                                    disabled={isFirstSlide}
                                 />
 
                                 <Arrow
@@ -138,10 +175,7 @@ export default function Projects ({id} : Props) {
                                         e.stopPropagation();
                                         instanceRef.current?.next();
                                     }}
-                                    disabled={
-                                        !instanceRef.current.options.loop &&
-                                        currentSlide === instanceRef.current.track.details.slides.length - 1
-                                    }
+                                    disabled={isLastSlide}
                                 />
                             </>
                         )}
@@ -184,7 +218,7 @@ function Arrow(props: {
     const disabled = props.disabled ? ` ${styles.arrowDisabled}` : "";
     return (
         <svg
-            onClick={props.onClick}
+            onClick={props.disabled ? undefined : props.onClick}
             className={`${styles.arrow} ${
                 props.left ? styles.arrowLeft : styles.arrowRight
             }${disabled}`}
@@ -192,6 +226,7 @@ function Arrow(props: {
             viewBox="0 0 24 24"
             aria-label={props.left ? "Previous slide" : "Next slide"}
             role="button"
+            aria-disabled={props.disabled}
         >
             {props.left && (
                 <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />

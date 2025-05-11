@@ -238,7 +238,7 @@
     z-index: 10;
     filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
     transition: all 0.3s ease;
-    background: rgba(107, 70, 193, 0.2);
+    background: rgba(20, 50, 150, 0.2);
     backdrop-filter: blur(5px);
     border-radius: 50%;
     padding: 8px;
@@ -247,10 +247,10 @@
 }
 
 .arrow:hover {
-    fill: #8a68e9;
+    fill: #4a9eff;
     transform: translateY(-50%) scale(1.1);
-    background: rgba(107, 70, 193, 0.4);
-    box-shadow: 0 0 15px rgba(138, 104, 233, 0.5);
+    background: rgba(20, 50, 150, 0.4);
+    box-shadow: 0 0 15px rgba(74, 158, 255, 0.5);
 }
 
 .arrowLeft {
@@ -263,14 +263,14 @@
 
 .arrowDisabled {
     fill: rgba(255, 255, 255, 0.3);
-    cursor: not-allowed;
-    background: rgba(107, 70, 193, 0.1);
+    cursor: default;
+    background: rgba(20, 50, 150, 0.1);
 }
 
 .arrowDisabled:hover {
     fill: rgba(255, 255, 255, 0.3);
     transform: translateY(-50%);
-    background: rgba(107, 70, 193, 0.1);
+    background: rgba(20, 50, 150, 0.1);
     box-shadow: none;
 }
 
@@ -312,7 +312,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #8a68e9, #6b46c1);
+    background: linear-gradient(135deg, #4a9eff, #1e50c8);
     border-radius: 50%;
     transform: scale(0);
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -344,7 +344,7 @@
     right: -8px;
     bottom: -8px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(138, 104, 233, 0.6) 0%, rgba(138, 104, 233, 0) 70%);
+    background: radial-gradient(circle, rgba(74, 158, 255, 0.6) 0%, rgba(74, 158, 255, 0) 70%);
     z-index: -1;
     animation: dotPulse 1.5s infinite;
 }
@@ -367,7 +367,7 @@
 .projectSlide[aria-label*="active"] .projectImageContainer {
     transform: scale(1.02);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
-    0 0 20px rgba(90, 103, 216, 0.4);
+    0 0 20px rgba(20, 50, 150, 0.4);
 }
 
 @media (max-width: 768px) {
@@ -467,7 +467,7 @@
 
 .skillFill {
     height: 100%;
-    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+    background: linear-gradient(90deg, #1e50c8 0%, #4a9eff 100%);
     border-radius: 5px;
     transition: width 1s ease-in-out;
 }
