@@ -1,4 +1,4 @@
-import {Fragment, useState} from "react";
+import {Fragment, useState, useEffect} from "react";
 import styles from "./projects.module.css";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
@@ -9,6 +9,7 @@ import image04 from "../../../../../public/assets/05.jpg";
 import image05 from "../../../../../public/assets/7.jpg";
 import image06 from "../../../../../public/assets/8.jpg";
 import Image from "next/image";
+import Skillset from "@/src/frontend/components/molecules/skillset";
 
 type Props = {
     id: string;
@@ -25,7 +26,28 @@ export default function Projects ({id} : Props) {
         created() {
             setLoaded(true);
         },
+        slides: {
+            perView: 1,
+            spacing: 0,
+        },
+        loop: true,
+        mode: "snap",
+        dragSpeed: 1.2,
     });
+
+    const [paused, setPaused] = useState(false);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (!paused && instanceRef.current) {
+                instanceRef.current.next();
+            }
+        }, 5000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [instanceRef, paused]);
 
     const projects = [
         {
@@ -71,44 +93,60 @@ export default function Projects ({id} : Props) {
             <div id={id} className={styles.contentContainer}>
                 <div className={styles.containerBox}>
                     <div className={styles.containerTitle}>
-                        <h1 className={styles.tituloTecnologico}>Soluções Tecnológicas Integradas para o Seu Negócio</h1>
+                        <h1 className={styles.techTitle}>Projects and Technologies</h1>
                     </div>
-                    
-                    <div className={`${styles.sliderContainer} navigation-wrapper`}>
+
+                    <div
+                        className={`${styles.sliderContainer} navigation-wrapper`}
+                        onMouseEnter={() => setPaused(true)}
+                        onMouseLeave={() => setPaused(false)}
+                    >
                         <div ref={sliderRef} className="keen-slider">
                             {projects.map((project) => (
-                                <div key={project.id} className={`keen-slider__slide ${styles.projectSlide}`}>
-                                        <div className={styles.projectImageContainer}>
-                                            <Image
-                                                width={"800"}
-                                                height={"250"}
-                                                src={project.image.src} 
-                                                alt={project.title} 
-                                                className={styles.projectImage}
-                                            />
-                                        </div>
+                                <div
+                                    key={project.id}
+                                    className={`keen-slider__slide ${styles.projectSlide}`}
+                                    aria-label={currentSlide === project.id - 1 ? "active slide" : "slide"}
+                                >
+                                    <div className={styles.projectImageContainer}>
+                                        <Image
+                                            width={1280}
+                                            height={0}
+                                            src={project.image.src}
+                                            alt={project.title}
+                                            className={styles.projectImage}
+                                            priority={project.id === 1}
+                                        />
+                                    </div>
                                 </div>
                             ))}
                         </div>
-                        
+
                         {loaded && instanceRef.current && (
                             <>
                                 <Arrow
                                     left
-                                    onClick={(e) => e.stopPropagation() || instanceRef.current?.prev()}
-                                    disabled={currentSlide === 0}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        instanceRef.current?.prev();
+                                    }}
+                                    disabled={!instanceRef.current.options.loop && currentSlide === 0}
                                 />
 
                                 <Arrow
-                                    onClick={(e) => e.stopPropagation() || instanceRef.current?.next()}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        instanceRef.current?.next();
+                                    }}
                                     disabled={
+                                        !instanceRef.current.options.loop &&
                                         currentSlide === instanceRef.current.track.details.slides.length - 1
                                     }
                                 />
                             </>
                         )}
                     </div>
-                    
+
                     {loaded && instanceRef.current && (
                         <div className={styles.dots}>
                             {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => {
@@ -118,12 +156,20 @@ export default function Projects ({id} : Props) {
                                         onClick={() => {
                                             instanceRef.current?.moveToIdx(idx);
                                         }}
+                                        aria-label={`Go to slide ${idx + 1}`}
                                         className={`${styles.dot} ${currentSlide === idx ? styles.active : ""}`}
                                     ></button>
                                 );
                             })}
                         </div>
                     )}
+
+                    <div className={styles.skillsSection}>
+                        <div className={styles.containerTitle}>
+                            <h1 className={styles.techTitle}>Skillsets</h1>
+                        </div>
+                        <Skillset/>
+                    </div>
                 </div>
             </div>
         </Fragment>
@@ -144,6 +190,8 @@ function Arrow(props: {
             }${disabled}`}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
+            aria-label={props.left ? "Previous slide" : "Next slide"}
+            role="button"
         >
             {props.left && (
                 <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />

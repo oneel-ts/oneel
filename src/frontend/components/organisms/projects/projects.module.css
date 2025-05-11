@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 75px;
+    gap: 50px;
     box-sizing: border-box;
 }
 
@@ -31,7 +31,7 @@
     padding-top: 10px;
 }
 
-.tituloTecnologico {
+.techTitle {
     font-size: clamp(2rem, 3vw, 3rem);
     text-align: center;
     margin: 0;
@@ -47,7 +47,7 @@
     padding: 10px 0;
 }
 
-.tituloTecnologico::before {
+.techTitle::before {
     content: "";
     position: absolute;
     bottom: 0;
@@ -59,7 +59,7 @@
     border-radius: 2px;
 }
 
-.tituloTecnologico::after {
+.techTitle::after {
     content: attr(data-text);
     position: absolute;
     left: 0;
@@ -73,7 +73,6 @@
     pointer-events: none;
 }
 
-/* Certifique-se que as animações também estão definidas no arquivo */
 @keyframes gradientFlow {
     0% {
         background-position: 0% 50%;
@@ -106,83 +105,130 @@
     }
 }
 
-/* Estilos existentes (mantenha todos eles)... */
-
-/* Adicione estes novos estilos para o slider */
 .sliderContainer {
     position: relative;
-    width: 90%;
-    max-width: 1100px;
+    width: 100%;
+    max-width: 1280px;
     margin: 0 auto;
+    padding: 30px 0;
+    overflow: visible;
+}
+
+.sliderContainer::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    right: -15px;
+    top: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    backdrop-filter: blur(5px);
+    z-index: -1;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 0 0 15px rgba(90, 103, 216, 0.1);
+}
+
+.sliderContainer .keen-slider {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>') 16 16, grab;
+    border-radius: 12px;
+    overflow: visible;
+    position: relative;
+}
+
+.sliderContainer .keen-slider:active {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>') 16 16, grabbing;
 }
 
 .projectSlide {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    position: relative;
+    transition: all 0.5s ease;
+    background: transparent;
+    padding: 0;
 }
 
-.projectCard {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    overflow: hidden;
-    width: 100%;
-    height: 380px;
-}
-
-.projectCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 255, 255, 0.15);
+.projectSlide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 32px;
+    padding: 2px;
+    background: linear-gradient(135deg,
+                transparent,
+                rgba(90, 103, 216, 0.3),
+                transparent);
+    mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                  linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 1;
 }
 
 .projectImageContainer {
     width: 100%;
-    height: 240px;
+    height: 500px;
     overflow: hidden;
+    border-radius: 32px;
+    position: relative;
+    transform: translateZ(0);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.projectImageContainer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.2)
+    );
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
 .projectImage {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
 }
 
-.projectCard:hover .projectImage {
-    transform: scale(1.08);
+.projectSlide:hover::before {
+    opacity: 1;
 }
 
-.projectInfo {
-    padding: 15px;
+.projectSlide:hover .projectImageContainer {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
+                0 0 15px rgba(90, 103, 216, 0.3);
 }
 
-.projectTitle {
-    font-size: 1.4rem;
-    margin: 0 0 8px;
-    color: #fff;
-    background: linear-gradient(90deg, #4e81eb, #8a68e9);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    font-weight: 600;
+.projectSlide:hover .projectImageContainer::after {
+    opacity: 1;
 }
 
-.projectDescription {
-    font-size: 0.95rem;
-    color: #dadada;
-    margin: 0;
+.projectSlide:hover .projectImage {
+    transform: scale(1.05);
 }
 
-/* Estilos para as setas de navegação */
 .arrow {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -191,51 +237,90 @@
     cursor: pointer;
     z-index: 10;
     filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    background: rgba(107, 70, 193, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .arrow:hover {
     fill: #8a68e9;
     transform: translateY(-50%) scale(1.1);
+    background: rgba(107, 70, 193, 0.4);
+    box-shadow: 0 0 15px rgba(138, 104, 233, 0.5);
 }
 
 .arrowLeft {
-    left: -40px;
+    left: -60px;
 }
 
 .arrowRight {
-    left: auto;
-    right: -40px;
+    right: -60px;
 }
 
 .arrowDisabled {
     fill: rgba(255, 255, 255, 0.3);
     cursor: not-allowed;
+    background: rgba(107, 70, 193, 0.1);
 }
 
 .arrowDisabled:hover {
     fill: rgba(255, 255, 255, 0.3);
     transform: translateY(-50%);
+    background: rgba(107, 70, 193, 0.1);
+    box-shadow: none;
 }
 
-/* Estilos para os pontos de navegação */
 .dots {
     display: flex;
-    padding: 10px 0;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: -30px;
+    gap: 12px;
+    position: relative;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    width: fit-content;
+    padding: 8px 20px;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .dot {
+    position: relative;
     border: none;
-    width: 10px;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.3);
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    margin: 0 5px;
-    padding: 5px;
+    padding: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+}
+
+.dot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #8a68e9, #6b46c1);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dot:hover {
+    transform: scale(1.2);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .dot:focus {
@@ -243,65 +328,146 @@
 }
 
 .dot.active {
-    background: #8a68e9;
-    box-shadow: 0 0 10px rgba(138, 104, 233, 0.6);
+    background: transparent;
+    transform: scale(1.2);
 }
 
-/* Responsividade */
+.dot.active::before {
+    transform: scale(1);
+}
+
+.dot.active::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(138, 104, 233, 0.6) 0%, rgba(138, 104, 233, 0) 70%);
+    z-index: -1;
+    animation: dotPulse 1.5s infinite;
+}
+
+@keyframes dotPulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+}
+
+.projectSlide[aria-label*="active"] .projectImageContainer {
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(90, 103, 216, 0.4);
+}
+
 @media (max-width: 768px) {
     .sliderContainer {
         width: 95%;
     }
-    
+
     .arrow {
-        width: 25px;
-        height: 25px;
+        width: 35px;
+        height: 35px;
     }
-    
+
     .arrowLeft {
         left: -30px;
     }
-    
+
     .arrowRight {
         right: -30px;
     }
-    
-    .projectCard {
-        height: 340px;
-    }
-    
+
     .projectImageContainer {
-        height: 200px;
+        height: 350px;
     }
 }
 
 @media (max-width: 480px) {
     .arrow {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
     }
-    
+
     .arrowLeft {
         left: -25px;
     }
-    
+
     .arrowRight {
         right: -25px;
     }
-    
-    .projectCard {
-        height: 320px;
-    }
-    
+
     .projectImageContainer {
-        height: 180px;
+        height: 250px;
     }
-    
-    .projectTitle {
-        font-size: 1.2rem;
+
+    .dots {
+        gap: 8px;
     }
-    
-    .projectDescription {
-        font-size: 0.85rem;
+
+    .dot {
+        width: 10px;
+        height: 10px;
     }
+}
+
+.skillsSection {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.skillsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.skillItem {
+    width: 100%;
+}
+
+.skillInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.skillName {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.skillPercentage {
+    font-weight: 700;
+    color: #333;
+}
+
+.skillBar {
+    height: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.skillFill {
+    height: 100%;
+    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+    border-radius: 5px;
+    transition: width 1s ease-in-out;
 }

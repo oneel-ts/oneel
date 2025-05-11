@@ -6,6 +6,7 @@ import BuildIcon from '@mui/icons-material/Build';
 import SecurityIcon from '@mui/icons-material/Security';
 import StorageIcon from '@mui/icons-material/Storage';
 import LanguageIcon from '@mui/icons-material/Language';
+import {poppins} from "@/src/frontend/styles/fonts";
 
 type Props = {
     id: string;
@@ -75,7 +76,7 @@ export default function Services({id}: Props) {
             <div id={id} className={styles.containerContent}>
                 <div className={styles.containerBox}>
                     <div className={styles.containerTitle}>
-                        <h1 className={styles.technologicalTitle}>Soluções Tecnológicas Integradas para o Seu Negócio</h1>
+                        <h1 className={`${styles.technologicalTitle} ${poppins.className}`}>Soluções Tecnológicas Integradas para o Seu Negócio</h1>
                     </div>
 
                     <div className={styles.servicesGrid}>
