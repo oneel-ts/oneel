@@ -423,16 +423,14 @@
     font-size: clamp(2rem, 3vw, 3rem);
     text-align: center;
     margin: 0;
-    background: linear-gradient(90deg, #3a7bd5, #5a67d8, #6b46c1, #3a7bd5);
-    background-size: 300% 300%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: gradientFlow 8s ease infinite, glowEffect 3s ease-in-out infinite alternate;
-    text-shadow: 0 0 15px rgba(58, 123, 213, 0.3);
-    letter-spacing: 1px;
+    color: #ffffff; /* Alterado para branco puro */
+    font-weight: 700; /* Aumentei o peso da fonte */
+    letter-spacing: 2px; /* Aumentei o espaçamento entre letras */
     position: relative;
-    padding: 10px 0;
+    padding: 15px 0; /* Aumentei o padding */
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(64, 64, 64, 0.7); /* Adicionei glow branco */
+    text-transform: uppercase; /* Adicionei texto em maiúsculas para destaque */
+    font-family: var(--font-poppins); /* Usando a fonte Poppins que foi adicionada anteriormente */
 }
 
 .technologicalTitle::before {
@@ -441,10 +439,11 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 50%;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, rgba(90, 103, 216, 0.7), transparent);
+    width: 60%; /* Aumentei a largura */
+    height: 4px; /* Aumentei a altura */
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent); /* Mais brilhante */
     border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Adicionei glow */
 }
 
 .technologicalTitle::after {
@@ -454,11 +453,21 @@
     top: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.1;
-    filter: blur(8px);
-    color: #5a67d8;
+    opacity: 0.15; /* Aumentei opacidade */
+    filter: blur(10px);
+    color: #ffffff; /* Alterado para branco */
     animation: pulseEffect 4s ease-in-out infinite;
     pointer-events: none;
+}
+
+/* Animação de glow pulsante para o título */
+@keyframes titleGlow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(138, 104, 233, 0.7);
+    }
+    50% {
+        text-shadow: 0 0 25px rgba(255, 255, 255, 0.7), 0 0 40px rgba(138, 104, 233, 0.9);
+    }
 }
 
 @keyframes gradientFlow {

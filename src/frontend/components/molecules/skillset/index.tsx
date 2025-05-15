@@ -39,7 +39,7 @@ export default function Skillset() {
         { id: "frontend", label: "Frontend" },
         { id: "backend", label: "Backend" },
         { id: "architecture", label: "Architecture" },
-        { id: "cloud", label: "cloud and data management" }
+        { id: "cloud", label: "cloud/data" }
     ];
 
     return (
