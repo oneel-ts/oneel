@@ -1,3 +1,281 @@
+.contentContainer {
+    width: 100%;
+    max-width: 1280px;
+    /* Remova height: 100% para evitar exceder o container pai */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    box-sizing: border-box;
+    /* Ajuste as margens para não causar overflow */
+    margin: 6vh auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.containerBox {
+    width: 100%;
+    /* Substitua height fixo por min-height e max-height para adaptação */
+    min-height: fit-content;
+    max-height: calc(100vh - 12vh);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* Reduza o gap para acomodar melhor o conteúdo */
+    gap: 30px;
+    box-sizing: border-box;
+    /* Adicione overflow para garantir que todo conteúdo seja visível */
+    overflow-y: auto;
+    /* Adicione padding para espaçamento adequado */
+    padding: 20px 0;
+}
+
+.containerTitle {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(20px, 3vw, 28px);
+    padding-top: 10px;
+}
+
+/* Ajuste o container do slider para se adaptar a diferentes tamanhos de tela */
+.sliderContainer {
+    position: relative;
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    /* Altura máxima para não exceder o container pai */
+    max-height: 50vh;
+}
+
+.projectSlide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    /* Garanta que o slide se adapte ao container */
+    height: 100%;
+}
+
+.projectImageContainer {
+    width: 100%;
+    /* Altura responsiva que se adapta à tela */
+    height: clamp(200px, 30vh, 400px);
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.projectImage {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+/* Estilos para as setas de navegação */
+.arrow {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    fill: #fff;
+    cursor: pointer;
+    z-index: 10;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+    transition: all 0.2s ease;
+}
+
+.arrow:hover {
+    fill: #8a68e9;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.arrowLeft {
+    left: -40px;
+}
+
+.arrowRight {
+    left: auto;
+    right: -40px;
+}
+
+.arrowDisabled {
+    fill: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+}
+
+.arrowDisabled:hover {
+    fill: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%);
+}
+
+/* Estilos para os pontos de navegação */
+.dots {
+    display: flex;
+    padding: 10px 0;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.dot {
+    border: none;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot:focus {
+    outline: none;
+}
+
+.dot.active {
+    background: #8a68e9;
+    box-shadow: 0 0 10px rgba(138, 104, 233, 0.6);
+}
+
+/* Adicione o estilo do título tecnológico se ainda não estiver no arquivo */
+.tituloTecnologico {
+    font-size: clamp(2rem, 3vw, 3rem);
+    text-align: center;
+    margin: 0;
+    background: linear-gradient(90deg, #3a7bd5, #5a67d8, #6b46c1, #3a7bd5);
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientFlow 8s ease infinite, glowEffect 3s ease-in-out infinite alternate;
+    text-shadow: 0 0 15px rgba(58, 123, 213, 0.3);
+    letter-spacing: 1px;
+    position: relative;
+    padding: 10px 0;
+}
+
+.tituloTecnologico::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(90, 103, 216, 0.7), transparent);
+    border-radius: 2px;
+}
+
+.tituloTecnologico::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    filter: blur(8px);
+    color: #5a67d8;
+    animation: pulseEffect 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Animações */
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes glowEffect {
+    0% { text-shadow: 0 0 5px rgba(58, 123, 213, 0.3); }
+    100% { text-shadow: 0 0 15px rgba(90, 103, 216, 0.5), 0 0 25px rgba(107, 70, 193, 0.3); }
+}
+
+@keyframes pulseEffect {
+    0%, 100% { opacity: 0.05; filter: blur(8px); }
+    50% { opacity: 0.1; filter: blur(12px); }
+}
+
+/* Media queries para responsividade */
+@media (min-width: 1080px) {
+    .contentContainer {
+        margin: 8vh auto;
+    }
+    
+    .containerBox {
+        max-height: calc(100vh - 16vh);
+    }
+    
+    .projectImageContainer {
+        height: clamp(250px, 35vh, 450px);
+    }
+}
+
+@media (max-width: 1080px) {
+    .arrow {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .arrowLeft {
+        left: -30px;
+    }
+    
+    .arrowRight {
+        right: -30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contentContainer {
+        margin: 4vh auto;
+    }
+    
+    .containerBox {
+        gap: 20px;
+    }
+    
+    .projectImageContainer {
+        height: clamp(180px, 25vh, 300px);
+    }
+    
+    .arrowLeft {
+        left: -25px;
+    }
+    
+    .arrowRight {
+        right: -25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .containerTitle {
+        width: 90%;
+    }
+    
+    .sliderContainer {
+        width: 95%;
+    }
+    
+    .projectImageContainer {
+        height: clamp(150px, 20vh, 250px);
+    }
+    
+    .arrowLeft {
+        left: -20px;
+    }
+    
+    .arrowRight {
+        right: -20px;
+    }
+}
 .containerContent {
     width: 100%;
     max-width: 1280px;
@@ -7,21 +285,22 @@
     flex-direction: column;
     color: white;
     box-sizing: border-box;
-    margin: 12vh;
+    margin: 12vh 0 0 0;
     position: relative;
 }
 
 .containerBox {
     width: 100%;
-    height: 85vh;
+    height: 80vh;
     display: flex;
+    align-items: center;
     flex-direction: column;
-    gap: 75px;
+    gap: 50px;
     box-sizing: border-box;
 }
 
 .containerTitle {
-    width: 100%;
+    width: 75%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,7 +309,7 @@
     padding-top: 10px;
 }
 
-.propostaContainer {
+.proposalContainer {
     width: 100%;
     text-align: center;
     animation: fadeIn 0.8s ease-in-out;
@@ -38,7 +317,7 @@
     padding-top: 0;
 }
 
-.propostaTitulo {
+.proposalTitle {
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     margin-top: 0;
     margin-bottom: 5px;
@@ -50,7 +329,7 @@
     padding: 0 10px;
 }
 
-.propostaTexto {
+.proposalText {
     font-size: clamp(0.85rem, 1.8vw, 1.1rem);
     line-height: 1.4;
     color: #e0e0e0;
@@ -59,7 +338,7 @@
     margin-bottom: 0;
 }
 
-.servicosGrid {
+.servicesGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
@@ -71,7 +350,7 @@
     right: 0;
 }
 
-.servicoCard {
+.serviceCard {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border-radius: 10px;
@@ -86,14 +365,14 @@
     box-sizing: border-box;
 }
 
-.servicoCard:hover {
+.serviceCard:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
     border-color: rgba(255, 255, 255, 0.15);
     background: rgba(255, 255, 255, 0.08);
 }
 
-.servicoIcone {
+.serviceIcon {
     font-size: clamp(1.8rem, 3vw, 2.2rem);
     margin-bottom: 0.6rem;
     color: #6d9aff;
@@ -107,7 +386,7 @@
     box-shadow: 0 0 15px rgba(109, 154, 255, 0.3);
 }
 
-.servicoTitulo {
+.serviceTitle {
     font-size: clamp(1.1rem, 1.8vw, 1.3rem);
     margin-bottom: 0.6rem;
     font-weight: 600;
@@ -119,14 +398,14 @@
     justify-content: center;
 }
 
-.servicoLista {
+.serviceList {
     list-style-type: none;
     padding: 0;
     width: 100%;
     flex-grow: 1;
 }
 
-.servicoItem {
+.serviceItem {
     padding: 0.4rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
@@ -136,83 +415,91 @@
     text-overflow: ellipsis;
 }
 
-.servicoItem:last-child {
+.serviceItem:last-child {
     border-bottom: none;
 }
 
-.tituloTecnologico {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  text-align: center;
-  margin: 0;
-  background: linear-gradient(90deg, #3a7bd5, #5a67d8, #6b46c1, #3a7bd5);
-  background-size: 300% 300%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: gradientFlow 8s ease infinite, glowEffect 3s ease-in-out infinite alternate;
-  text-shadow: 0 0 15px rgba(58, 123, 213, 0.3);
-  letter-spacing: 1px;
-  position: relative;
-  padding: 10px 0;
+.technologicalTitle {
+    font-size: clamp(2rem, 3vw, 3rem);
+    text-align: center;
+    margin: 0;
+    color: #ffffff; /* Alterado para branco puro */
+    font-weight: 700; /* Aumentei o peso da fonte */
+    letter-spacing: 2px; /* Aumentei o espaçamento entre letras */
+    position: relative;
+    padding: 15px 0; /* Aumentei o padding */
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(64, 64, 64, 0.7); /* Adicionei glow branco */
+    text-transform: uppercase; /* Adicionei texto em maiúsculas para destaque */
+    font-family: var(--font-poppins); /* Usando a fonte Poppins que foi adicionada anteriormente */
 }
 
-.tituloTecnologico::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50%;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, rgba(90, 103, 216, 0.7), transparent);
-  border-radius: 2px;
+.technologicalTitle::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%; /* Aumentei a largura */
+    height: 4px; /* Aumentei a altura */
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent); /* Mais brilhante */
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Adicionei glow */
 }
 
-.tituloTecnologico::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.1;
-  filter: blur(8px);
-  color: #5a67d8;
-  animation: pulseEffect 4s ease-in-out infinite;
-  pointer-events: none;
+.technologicalTitle::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15; /* Aumentei opacidade */
+    filter: blur(10px);
+    color: #ffffff; /* Alterado para branco */
+    animation: pulseEffect 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Animação de glow pulsante para o título */
+@keyframes titleGlow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(138, 104, 233, 0.7);
+    }
+    50% {
+        text-shadow: 0 0 25px rgba(255, 255, 255, 0.7), 0 0 40px rgba(138, 104, 233, 0.9);
+    }
 }
 
 @keyframes gradientFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @keyframes glowEffect {
-  0% {
-    text-shadow: 0 0 5px rgba(58, 123, 213, 0.3);
-  }
-  100% {
-    text-shadow: 0 0 15px rgba(90, 103, 216, 0.5), 0 0 25px rgba(107, 70, 193, 0.3);
-  }
+    0% {
+        text-shadow: 0 0 5px rgba(58, 123, 213, 0.3);
+    }
+    100% {
+        text-shadow: 0 0 15px rgba(90, 103, 216, 0.5), 0 0 25px rgba(107, 70, 193, 0.3);
+    }
 }
 
 @keyframes pulseEffect {
-  0%, 100% {
-    opacity: 0.05;
-    filter: blur(8px);
-  }
-  50% {
-    opacity: 0.1;
-    filter: blur(12px);
-  }
+    0%, 100% {
+        opacity: 0.05;
+        filter: blur(8px);
+    }
+    50% {
+        opacity: 0.1;
+        filter: blur(12px);
+    }
 }
 
 @keyframes fadeIn {
@@ -231,57 +518,57 @@
         width: 90%;
     }
 
-    .servicosGrid {
+    .servicesGrid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (max-width: 1080px) {
-    .servicosGrid {
+    .servicesGrid {
         grid-template-columns: repeat(3, 1fr);
         gap: 0.8rem;
     }
 
-    .servicoCard {
+    .serviceCard {
         padding: 8px 6px;
     }
 
-    .propostaContainer {
+    .proposalContainer {
         width: 90%;
     }
 }
 
 @media (max-width: 768px) {
-    .servicosGrid {
+    .servicesGrid {
         grid-template-columns: repeat(2, 1fr);
         gap: 0.7rem;
     }
 
-    .propostaTitulo {
+    .proposalTitle {
         font-size: 1.4rem;
     }
 
-    .servicoCard {
+    .serviceCard {
         width: 100%;
         padding: 8px 6px;
     }
 }
 
 @media (max-width: 480px) {
-    .servicosGrid {
+    .servicesGrid {
         grid-template-columns: repeat(1, 1fr);
     }
 
-    .servicoIcone {
+    .serviceIcon {
         width: 40px;
         height: 40px;
     }
 
-    .servicoTitulo {
+    .serviceTitle {
         font-size: 0.9rem;
     }
 
-    .servicoItem {
+    .serviceItem {
         font-size: 0.7rem;
         padding: 0.3rem 0;
     }

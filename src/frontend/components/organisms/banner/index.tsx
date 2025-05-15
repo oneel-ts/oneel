@@ -3,7 +3,11 @@ import styles from "./banner.module.css";
 import {poppins} from "@/src/frontend/styles/fonts";
 import TextField from "@/src/frontend/components/atoms/text-field";
 
-export default function Banner () {
+type Props = {
+    viewOurServices: () => void;
+}
+
+export default function Banner ({viewOurServices} : Props) {
     return (
         <Fragment>
             <div className={styles.textContainer}>
@@ -14,7 +18,7 @@ export default function Banner () {
                     <TextField title={false}
                                label={"Transformamos ideias em resultados concretos, combinando tecnologia, trabalho dedicado e excelência em execução para impulsionar seus projetos de forma eficiente e segura."}/>
                 </div>
-                <div className={styles.serviceButton}>
+                <div onClick={viewOurServices} className={styles.serviceButton}>
                     <TextField label={"View our services"} title={false}/>
                 </div>
             </div>

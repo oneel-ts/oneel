@@ -7,8 +7,8 @@ import {poppins} from "@/src/frontend/styles/fonts";
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import ScheduleIcon from '@mui/icons-material/Schedule';
-import TextField from "../../atoms/text-field";
 import Services from "@/src/frontend/components/organisms/services";
+import Projects from "@/src/frontend/components/organisms/projects";
 
 type cardsDto = {
     icon: JSX.Element;
@@ -36,14 +36,27 @@ export default function Brands() {
         }
     ]
 
+    const handlerOpenForm = () => {
+
+    }
+
+    const viewOurServices = () => {
+        const element = document.getElementById('services');
+        if (element) {
+            element.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+    }
 
     return (
         <Fragment>
             <section className={`${styles.container} ${poppins.className}`}>
-                <section className={styles.containerBox}>
-                    <HeaderDefault/>
+                <HeaderDefault handlerOpenForm={handlerOpenForm}/>
+                <section id={"home"} className={styles.containerBox}>
                     <div className={styles.contentContainer}>
-                        <Banner/>
+                        <Banner viewOurServices={viewOurServices}/>
                         <div className={styles.containerCards}>
                             {cardsInfos.map((card, index) => (
                                 <CardsHome
@@ -57,7 +70,8 @@ export default function Brands() {
                     </div>
                 </section>
                 <div className={styles.containerService}>
-                    <Services/>
+                    <Services id={"services"}/>
+                    <Projects id={"projects"}/>
                 </div>
             </section>
         </Fragment>

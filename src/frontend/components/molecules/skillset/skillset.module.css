@@ -1,0 +1,220 @@
+.containerSkills {
+    background: radial-gradient(circle, rgba(20, 25, 50, 0.7), rgba(10, 10, 20, 0.8), rgba(5, 5, 15, 0.9));
+    border-radius: 10px;
+    width: 100%; /* Alterado de 100vh para 100% */
+}
+
+.containerSkills::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 50, 100, 0.05), rgba(0, 10, 50, 0.1));
+    z-index: -1;
+}
+
+.tabsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.tabsContainer::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg,
+    transparent,
+    rgba(0, 150, 255, 0.2),
+    rgba(0, 150, 255, 0.5),
+    rgba(0, 150, 255, 0.2),
+    transparent
+    );
+}
+
+.tabButton {
+    margin: 16px;
+    background-color: transparent;
+    color: rgba(200, 200, 255, 0.7);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 12px; /* Aumentado para tornar mais arredondado */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 1px;
+    border: 1px solid transparent; /* Adicionado borda transparente */
+}
+
+.tabButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px; /* Mesmo valor do botão */
+    box-shadow: 0 0 0 0 transparent;
+    background: transparent;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.tabButton:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(40, 80, 200, 0.1);
+}
+
+.tabButton:hover::before {
+    border-color: rgba(74, 158, 255, 0.3);
+    box-shadow: 0 0 10px rgba(74, 158, 255, 0.4);
+}
+
+.tabButton.active {
+    color: #4a9eff;
+    background-color: rgba(20, 50, 150, 0.2);
+}
+
+.tabButton.active::before {
+    border-color: #4a9eff;
+    box-shadow: 0 0 15px rgba(74, 158, 255, 0.5);
+    animation: glowingBorder 2s infinite;
+}
+
+@keyframes glowingBorder {
+    0% {
+        border-color: rgba(74, 158, 255, 0.5);
+        box-shadow: 0 0 5px rgba(74, 158, 255, 0.3);
+    }
+    50% {
+        border-color: rgba(74, 158, 255, 0.8);
+        box-shadow: 0 0 15px rgba(74, 158, 255, 0.6);
+    }
+    100% {
+        border-color: rgba(74, 158, 255, 0.5);
+        box-shadow: 0 0 5px rgba(74, 158, 255, 0.3);
+    }
+}
+
+.contentContainer {
+    min-height: 200px;
+    position: relative;
+}
+
+.content {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fadeIn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fadeOut {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.tabContent {
+    padding: 2rem 0;
+    border-radius: 8px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.tabContent h3 {
+    color: #4a9eff;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.7rem;
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 0;
+    letter-spacing: 0.8px;
+    text-shadow: 0 0 15px rgba(74, 158, 255, 0.3);
+}
+
+.tabContent h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #4a9eff, transparent);
+    animation: titlePulse 2s infinite;
+}
+
+@keyframes titlePulse {
+    0% {
+        opacity: 0.6;
+        height: 2px;
+    }
+    50% {
+        opacity: 1;
+        height: 3px;
+    }
+    100% {
+        opacity: 0.6;
+        height: 2px;
+    }
+}
+
+.tabContent p {
+    color: rgba(220, 220, 255, 0.8);
+    line-height: 1.6;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(74, 158, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(74, 158, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(74, 158, 255, 0);
+    }
+}
+
+.techGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.techItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.techItem:hover {
+    transform: translateY(-5px);
+}
+
+.techName {
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
