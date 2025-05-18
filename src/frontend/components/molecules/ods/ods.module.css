@@ -1,0 +1,313 @@
+.odsContainer {
+    width: 100%;
+    padding: 6rem 2rem;
+    position: relative;
+    color: #e6f1ff;
+}
+
+.odsContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+    z-index: 0;
+}
+
+.odsInner {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.odsTitle {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.odsTitle h2 {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.odsDivider {
+    height: 3px;
+    width: 100%;
+    margin: 1rem 0 1.5rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.odsDivider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        #4361ee, /* azul */
+        #4ea8de, /* azul claro */
+        #64dfdf, /* turquesa */
+        #7209b7, /* roxo */
+        #4361ee, /* repetir azul */
+        #4ea8de, /* repetir azul claro */
+        #64dfdf, /* repetir turquesa */
+        #7209b7  /* repetir roxo */
+    );
+    animation: colorRun 4s linear infinite;
+    box-shadow: 0 0 15px rgba(94, 96, 206, 0.8);
+}
+
+@keyframes colorRun {
+    0% {
+        transform: translateX(-66.66%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.odsDivider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right,
+        transparent 0%,
+        rgba(255, 255, 255, 0.6) 50%,
+        transparent 100%
+    );
+    animation: pulseGlow 2s ease-in-out infinite;
+    opacity: 0.5;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.odsTitle p {
+    text-align: center;
+}
+
+.odsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.odsCard {
+    background: rgba(17, 34, 64, 0.7);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: calc(33.33% - 2.5rem);
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 992px) {
+    .odsCard {
+        width: calc(50% - 2.5rem);
+    }
+}
+
+.odsCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.odsIconBox {
+    width: 100px;
+    background: rgba(100, 255, 218, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: #64ffda;
+    flex-shrink: 0;
+}
+
+.odsContent {
+    padding: 2rem;
+    flex-grow: 1;
+}
+
+.odsContent h3 {
+    color: #64ffda;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.odsContent p {
+    color: #c3d4f0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.odsFlexContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+.odsImageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.odsTextContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.odsTextContainer h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    background: #FFFFFF;
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    animation: gradientFlow 8s ease infinite;
+    position: relative;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.odsTextContainer p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 400px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.odsGridContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Estilos para Mobile - Otimizados */
+@media (max-width: 768px) {
+    .odsFlexContainer {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+    }
+    
+    .odsImageContainer {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    
+    .odsTextContainer {
+        text-align: center;
+        padding: 0 1rem;
+    }
+    
+    .odsGrid {
+        gap: 1rem;
+    }
+    
+    .odsCard {
+        width: calc(50% - 1rem);
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+    
+    .odsIconBox {
+        width: 100%;
+        height: 80px;
+        font-size: 2rem;
+    }
+    
+    .odsContent {
+        padding: 1.25rem;
+    }
+    
+    .odsContent h3 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+    
+    .odsContent p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        text-align: center;
+    }
+    
+    .odsContainer {
+        padding: 4rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .odsTitle h2 {
+        font-size: 1.75rem;
+    }
+    
+    .odsTextContainer h2 {
+        font-size: 1.75rem;
+    }
+    
+    .odsTextContainer p {
+        font-size: 0.9rem;
+    }
+    
+    .odsContent h3 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.9rem;
+    }
+    
+    .odsContent p {
+        font-size: 0.8rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}

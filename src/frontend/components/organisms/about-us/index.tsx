@@ -1,0 +1,26 @@
+import {Fragment} from "react";
+import Ods from "@/src/frontend/components/molecules/ods";
+import MvvContainer from "@/src/frontend/components/molecules/mvv-container";
+import AboutUsBanner from "@/src/frontend/components/molecules/about-us-banner";
+
+type Props = {
+    id: string;
+}
+
+export default function AboutUs({id}: Props) {
+    return (
+        <Fragment>
+            <div id={id}>
+                <AboutUsBanner/>
+                <Ods
+                    ids={[1, 2, 4, 8, 9, 10, 11, 17]}
+                    size="large"
+                    layout="grid"
+                    onClick={() => {
+                    }}
+                />
+                <MvvContainer/>
+            </div>
+        </Fragment>
+    );
+}

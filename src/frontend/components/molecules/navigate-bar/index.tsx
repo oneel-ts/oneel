@@ -9,7 +9,6 @@ const navigationItems : { id: string, label: string }[] = [
     { id: "services", label: "Services"},
     { id: "projects", label: "Projects"},
     { id: "about", label: "About Us"},
-    { id: "team", label: "Team"},
 ];
 
 export default function NavigateBar() {
@@ -52,10 +51,21 @@ export default function NavigateBar() {
 
         const element = document.getElementById(itemId);
         if (element) {
-            element.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
+            if (itemId === 'about') {
+                const headerHeight = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            } else {
+                element.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+            }
         }
     };
 

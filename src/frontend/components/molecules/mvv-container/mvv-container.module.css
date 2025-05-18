@@ -1,0 +1,209 @@
+.mvvContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e6f1ff;
+    padding: 2rem 1rem;
+    flex-direction: column;
+}
+
+.mvvInner {
+    max-width: 1255px;
+    width: 100%;
+}
+
+.mvvSection {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+}
+
+.mvvCard {
+    background: rgba(17, 34, 64, 0.7);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-left: 3px solid #64ffda;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    cursor: context-menu;
+    width: 28%;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.mvvCardVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mvvCard:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.mvvCard:nth-child(2) {
+    transition-delay: 0.3s;
+}
+
+.mvvCard:nth-child(3) {
+    transition-delay: 0.5s;
+}
+
+.mvvCard:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: #77b6ff;
+}
+
+.mvvIconWrapper {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(100, 255, 218, 0.15), rgba(119, 182, 255, 0.15));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    transition: transform 0.8s ease, background 0.4s ease;
+}
+
+.mvvCard:hover .mvvIconWrapper {
+    transform: rotate(360deg) scale(1.1);
+    background: linear-gradient(135deg, rgba(100, 255, 218, 0.3), rgba(119, 182, 255, 0.3));
+}
+
+.mvvIcon {
+    font-size: 1.5rem;
+    color: #64ffda;
+    transition: color 0.4s ease;
+}
+
+.mvvCard:hover .mvvIcon {
+    color: #77b6ff;
+}
+
+.mvvCard h3 {
+    color: #64ffda;
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.mvvCard:hover h3 {
+    color: #77b6ff;
+    transform: translateX(5px);
+}
+
+.mvvCard p {
+    color: #c3d4f0;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.mvvCard:hover p {
+    color: #e6f1ff;
+}
+
+@media (max-width: 992px) {
+    .mvvSection {
+        gap: 1.25rem;
+    }
+    
+    .mvvCard {
+        padding: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mvvSection {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .mvvCard {
+        width: 100%;
+        max-width: 450px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .mvvCard:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+    
+    .mvvCard:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+    
+    .mvvCard:nth-child(3) {
+        transition-delay: 0.3s;
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .mvvContainer {
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .mvvCard {
+        padding: 1rem;
+        border-left-width: 2px;
+    }
+    
+    .mvvCard h3 {
+        font-size: 1.2rem;
+    }
+    
+    .mvvCard p {
+        font-size: 0.9rem;
+    }
+    
+    .mvvIconWrapper {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .mvvIcon {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .mvvCard {
+        padding: 0.9rem;
+    }
+    
+    .mvvIconWrapper {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 0.75rem;
+    }
+    
+    .mvvIcon {
+        font-size: 1.2rem;
+    }
+}
+
+@media (hover: none) {
+    .mvvCard:active {
+        transform: translateY(-5px);
+        border-color: #77b6ff;
+    }
+    
+    .mvvCard:active .mvvIconWrapper {
+        background: linear-gradient(135deg, rgba(100, 255, 218, 0.3), rgba(119, 182, 255, 0.3));
+    }
+    
+    .mvvCard:active h3 {
+        color: #77b6ff;
+    }
+    
+    .mvvCard:active p {
+        color: #e6f1ff;
+    }
+}

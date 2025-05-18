@@ -133,77 +133,76 @@ export default function Projects ({id} : Props) {
         <Fragment>
             <div id={id} className={styles.contentContainer}>
                 <div className={styles.containerBox}>
-                    <div className={styles.containerTitle}>
-                        <h1 className={styles.techTitle}>Projects and Technologies</h1>
-                    </div>
-
-                    <div className={`${styles.sliderContainer} navigation-wrapper`}>
-                        <div ref={sliderRef} className="keen-slider">
-                            {projects.map((project) => (
-                                <div
-                                    key={project.id}
-                                    className={`keen-slider__slide ${styles.projectSlide}`}
-                                    aria-label={currentSlide === project.id - 1 ? "active slide" : "slide"}
-                                >
-                                    <div className={styles.projectImageContainer}>
-                                        <Image
-                                            width={1280}
-                                            height={0}
-                                            src={project.image.src}
-                                            alt={project.title}
-                                            className={styles.projectImage}
-                                            priority={project.id === 1}
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        {loaded && instanceRef.current && (
-                            <>
-                                <Arrow
-                                    left
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        instanceRef.current?.prev();
-                                    }}
-                                    disabled={isFirstSlide}
-                                />
-
-                                <Arrow
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        instanceRef.current?.next();
-                                    }}
-                                    disabled={isLastSlide}
-                                />
-                            </>
-                        )}
-                    </div>
-
-                    {loaded && instanceRef.current && (
-                        <div className={styles.dots}>
-                            {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => {
-                                return (
-                                    <button
-                                        key={idx}
-                                        onClick={() => {
-                                            instanceRef.current?.moveToIdx(idx);
-                                        }}
-                                        aria-label={`Go to slide ${idx + 1}`}
-                                        className={`${styles.dot} ${currentSlide === idx ? styles.active : ""}`}
-                                    ></button>
-                                );
-                            })}
-                        </div>
-                    )}
-
                     <div className={styles.skillsSection}>
                         <div className={styles.containerTitle}>
                             <h1 className={styles.techTitle}>Skillsets</h1>
                         </div>
                         <Skillset/>
                     </div>
+                    {/*<div className={styles.containerTitle}>*/}
+                    {/*    <h1 className={styles.techTitle}>Projects and Technologies</h1>*/}
+                    {/*</div>*/}
+
+                    {/*<div className={`${styles.sliderContainer} navigation-wrapper`}>*/}
+                    {/*    <div ref={sliderRef} className="keen-slider">*/}
+                    {/*        {projects.map((project) => (*/}
+                    {/*            <div*/}
+                    {/*                key={project.id}*/}
+                    {/*                className={`keen-slider__slide ${styles.projectSlide}`}*/}
+                    {/*                aria-label={currentSlide === project.id - 1 ? "active slide" : "slide"}*/}
+                    {/*            >*/}
+                    {/*                <div className={styles.projectImageContainer}>*/}
+                    {/*                    <Image*/}
+                    {/*                        width={1280}*/}
+                    {/*                        height={0}*/}
+                    {/*                        src={project.image.src}*/}
+                    {/*                        alt={project.title}*/}
+                    {/*                        className={styles.projectImage}*/}
+                    {/*                        priority={project.id === 1}*/}
+                    {/*                    />*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*        ))}*/}
+                    {/*    </div>*/}
+
+                    {/*    {loaded && instanceRef.current && (*/}
+                    {/*        <>*/}
+                    {/*            <Arrow*/}
+                    {/*                left*/}
+                    {/*                onClick={(e) => {*/}
+                    {/*                    e.stopPropagation();*/}
+                    {/*                    instanceRef.current?.prev();*/}
+                    {/*                }}*/}
+                    {/*                disabled={isFirstSlide}*/}
+                    {/*            />*/}
+
+                    {/*            <Arrow*/}
+                    {/*                onClick={(e) => {*/}
+                    {/*                    e.stopPropagation();*/}
+                    {/*                    instanceRef.current?.next();*/}
+                    {/*                }}*/}
+                    {/*                disabled={isLastSlide}*/}
+                    {/*            />*/}
+                    {/*        </>*/}
+                    {/*    )}*/}
+                    {/*</div>*/}
+
+                    {/*{loaded && instanceRef.current && (*/}
+                    {/*    <div className={styles.dots}>*/}
+                    {/*        {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => {*/}
+                    {/*            return (*/}
+                    {/*                <button*/}
+                    {/*                    key={idx}*/}
+                    {/*                    onClick={() => {*/}
+                    {/*                        instanceRef.current?.moveToIdx(idx);*/}
+                    {/*                    }}*/}
+                    {/*                    aria-label={`Go to slide ${idx + 1}`}*/}
+                    {/*                    className={`${styles.dot} ${currentSlide === idx ? styles.active : ""}`}*/}
+                    {/*                ></button>*/}
+                    {/*            );*/}
+                    {/*        })}*/}
+                    {/*    </div>*/}
+                    {/*)}*/}
                 </div>
             </div>
         </Fragment>
