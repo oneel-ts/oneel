@@ -1,16 +1,14 @@
 .containerBoxInput {
-    width: 340px;
+    width: 100%;
+    max-width: 500px;
     position: relative;
     margin-bottom: 20px;
     --border-color: #00FF9C;
     --border-color-hover: #4635B1;
     --icon-color: #00cc7d;
-    --placeholder-color: #7c7c7c;
+    --placeholder-color: #c5c3c3;
     --placeholder-color-hover: #5a4bbf;
     --transition-time: 0.6s;
-    --menu-bg: #f5f6fa;
-    --menu-hover-bg: rgba(70, 53, 177, 0.08);
-    --menu-selected-bg: rgba(0, 255, 156, 0.12);
 }
 
 .title {
@@ -25,16 +23,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .input {
-    width: 93%;
-    padding: 0 0 0 17px;
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    border: none;
     border-radius: 0;
     border-bottom: 2px solid var(--border-color);
     transition: all var(--transition-time) ease;
     outline: none;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 .input::placeholder {
@@ -44,8 +45,7 @@
 
 .input:hover,
 .input:focus {
-    padding: 0 0 0 17px;
-    text-indent: 16px;
+    padding: 10px 10px 10px 55px;
     border-bottom: 2px solid var(--border-color-hover);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
     transform: translateY(-2px);
@@ -60,7 +60,7 @@
 .icon {
     position: absolute;
     top: 50%;
-    left: 10px;
+    left: 15px;
     transform: translateY(-50%);
     pointer-events: none;
     display: flex;
@@ -80,6 +80,25 @@
 .input:hover::placeholder,
 .input:focus::placeholder {
     color: var(--placeholder-color-hover);
+}
+
+.errorText {
+    color: #ff3b30;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 30px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-5px);
+    animation: errorAppear 0.3s forwards;
+    padding-left: 2px;
+}
+
+@keyframes errorAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes border-fill {
@@ -111,65 +130,92 @@
     }
 }
 
-.menuItem {
-    position: relative;
-    padding: 10px 16px 10px 36px;
-    margin: 4px;
-    border-radius: 6px;
-    transition: all var(--transition-time) ease;
-    color: var(--placeholder-color);
-    font-weight: 500;
-    overflow: hidden;
-    background-color: var(--menu-bg);
-    border-left: 2px solid transparent;
+@media (max-width: 768px) {
+    .containerBoxInput {
+        max-width: 100%;
+    }
+
+    .title {
+        margin-left: 15px;
+        font-size: 15px;
+    }
+
+    .input {
+        font-size: 15px;
+        padding: 10px 10px 10px 35px;
+    }
+
+    .input:hover,
+    .input:focus {
+        padding: 10px 10px 10px 45px;
+    }
+
+    .icon {
+        left: 10px;
+    }
+
+    .input:hover + .icon,
+    .input:focus + .icon {
+        left: 20px;
+    }
+
+    .errorText {
+        margin-left: 15px;
+        font-size: 13px;
+    }
 }
 
-.menuItem:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--border-color);
-    transition: width var(--transition-time) ease;
+@media (max-width: 480px) {
+    .title {
+        margin-left: 10px;
+        font-size: 14px;
+    }
+
+    .input {
+        font-size: 14px;
+        padding: 8px 8px 8px 30px;
+    }
+
+    .input:hover,
+    .input:focus {
+        padding: 8px 8px 8px 40px;
+    }
+
+    .icon {
+        left: 8px;
+        transform: translateY(-50%) scale(0.9);
+    }
+
+    .input:hover + .icon,
+    .input:focus + .icon {
+        left: 15px;
+    }
+
+    .errorText {
+        margin-left: 10px;
+        font-size: 12px;
+    }
 }
 
-.menuItem:hover {
-    padding-left: 48px;
-    background-color: var(--menu-hover-bg);
-    color: var(--placeholder-color-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-left: 2px solid var(--border-color);
+@media (max-width: 360px) {
+    .title {
+        font-size: 13px;
+    }
+
+    .input {
+        font-size: 13px;
+    }
+
+    .errorText {
+        font-size: 11px;
+        line-height: 1.3;
+    }
 }
 
-.menuItem:hover:before {
-    width: 100%;
+.inputError {
+    border-bottom: 2px solid #ff3b30;
 }
 
-.menuItem:focus,
-.menuItemSelected {
-    padding-left: 48px;
-    background-color: var(--menu-selected-bg);
-    color: var(--placeholder-color-hover);
-    border-left: 2px solid var(--border-color-hover);
-    font-weight: 600;
-}
-
-.menuItem:focus {
-    animation: border-fill 0.5s forwards;
-    box-shadow: 0 4px 8px rgba(70, 53, 177, 0.2);
-}
-
-.selectInputFocused {
-    animation: border-fill 0.5s forwards;
-    box-shadow: 0 4px 8px rgba(70, 53, 177, 0.2);
-    text-indent: 16px;
-}
-
-.iconFocused {
-    color: var(--border-color-hover);
-    top: 45%;
-    left: 25px;
+.inputError:focus {
+    box-shadow: 0 4px 8px rgba(255, 59, 48, 0.2);
 }

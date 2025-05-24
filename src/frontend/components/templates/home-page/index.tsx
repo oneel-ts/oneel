@@ -10,6 +10,7 @@ import ScheduleIcon from '@mui/icons-material/Schedule';
 import Services from "@/src/frontend/components/organisms/services";
 import Projects from "@/src/frontend/components/organisms/projects";
 import AboutUs from "@/src/frontend/components/organisms/about-us";
+import ContactUsForm from "@/src/frontend/components/organisms/contact-us-form";
 
 type cardsDto = {
     icon: JSX.Element;
@@ -38,8 +39,11 @@ export default function Brands() {
     ]
 
     const handlerOpenForm = () => {
-
-    }
+        const formElement = document.getElementById("form");
+        if (formElement) {
+            formElement.scrollIntoView({ behavior: "smooth" });
+        }
+    };
 
     const viewOurServices = () => {
         const element = document.getElementById('services');
@@ -74,6 +78,7 @@ export default function Brands() {
                     <Services id={"services"}/>
                     <Projects id={"projects"}/>
                     <AboutUs id={"about"}/>
+                    <ContactUsForm id={"form"}/>
                 </div>
             </section>
         </Fragment>

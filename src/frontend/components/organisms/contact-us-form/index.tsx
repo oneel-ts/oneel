@@ -11,8 +11,21 @@ import AnimatedButton from "@/src/frontend/components/molecules/send-infos-butto
 import SelectField from "@/src/frontend/components/molecules/select-field";
 import {toast, ToastContainer} from "react-toastify";
 import emailjs from '@emailjs/browser';
+import TextField from "../../atoms/text-field";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import GroupIcon from '@mui/icons-material/Group';
+import SettingsIcon from '@mui/icons-material/Settings';
+import Image from "next/image";
+import kingbites from "../../../../../public/assets/king-bites.jpg"
+import ReactCountryFlag from "react-country-flag";
+import PhoneIcon from '@mui/icons-material/Phone';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-export default function ContactUsForm ({}) {
+type Props = {
+    id: string;
+}
+
+export default function ContactUsForm({id}: Props) {
     const [formData, setFormData] = useState<FormDTO>({
         name: "",
         telephone: "",
@@ -31,7 +44,6 @@ export default function ContactUsForm ({}) {
 
     const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(false);
     const [toastDuration] = useState<number>(4000);
-    
     const [resetTrigger, setResetTrigger] = useState<number>(0);
 
     const handleInputChange = (fieldName: string, value: string) => {
@@ -39,22 +51,22 @@ export default function ContactUsForm ({}) {
             ...prevData,
             [fieldName]: value
         }));
-        
+
         validateField(fieldName, value);
     };
-    
+
     const validateField = (fieldName: string, value: string) => {
         let isValid = value.length > 0;
-        
+
         if (fieldName === 'email') {
             const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
             isValid = emailRegex.test(value);
         }
-        
+
         if (fieldName === 'telephone') {
             isValid = value.length >= 10;
         }
-        
+
         setFormValidity(prev => ({
             ...prev,
             [fieldName]: isValid
@@ -69,7 +81,7 @@ export default function ContactUsForm ({}) {
             services: "",
             projectDescription: "",
         });
-        
+
         setFormValidity({
             name: false,
             telephone: false,
@@ -77,18 +89,18 @@ export default function ContactUsForm ({}) {
             services: false,
             projectDescription: false
         });
-        
+
         setResetTrigger(prev => prev + 1);
     };
-    
+
     useEffect(() => {
         emailjs.init("T1-6FPAIvihuaEqn7");
     }, []);
-    
-    useEffect(() => {        
+
+    useEffect(() => {
         const allFieldsFilled = Object.values(formData).every(value => value.length > 0);
         const allFieldsValid = Object.values(formValidity).every(valid => valid);
-        
+
         setIsButtonEnabled(allFieldsFilled && allFieldsValid);
     }, [formData, formValidity]);
 
@@ -111,9 +123,9 @@ export default function ContactUsForm ({}) {
                     'T1-6FPAIvihuaEqn7'
                 );
 
-                console.log('E-mail enviado com sucesso!', response);
-                
-                toast.success("Mensagem enviada com sucesso", {
+                console.log('Email sent successfully!', response);
+
+                toast.success("Message sent successfully", {
                     position: "top-center",
                     autoClose: toastDuration,
                     hideProgressBar: false,
@@ -126,10 +138,10 @@ export default function ContactUsForm ({}) {
                         resetForm();
                     }
                 });
-                
+
             } catch (error) {
-                console.error('Erro ao enviar e-mail:', error);
-                toast.error(`Erro ao enviar o e-mail: ${error}`, {
+                console.error('Error sending email:', error);
+                toast.error(`Error sending email: ${error}`, {
                     position: "top-center",
                     autoClose: toastDuration,
                     hideProgressBar: false,
@@ -146,67 +158,208 @@ export default function ContactUsForm ({}) {
     return (
         <Fragment>
             <ToastContainer/>
-            <div className={styles.containerModal}>
-                <div className={styles.miniHeaderModal}>
-                    <div>Contact Request Form</div>
-                </div>
-                <div className={styles.containerForm}>
-                    <InputField
-                        key={`name-${resetTrigger}`}
-                        nameField={'Name'}
-                        typeInput={"text"}
-                        placeholder={"Write your name"}
-                        fieldIcon={<AccountCircleIcon/>}
-                        value={formData.name}
-                        onChange={(value) => handleInputChange('name', value)}
-                    />
-                    <InputField
-                        key={`email-${resetTrigger}`}
-                        nameField={'E-mail'}
-                        typeInput={"email"}
-                        placeholder={"exemplo@dominio.com"}
-                        fieldIcon={<EmailIcon/>}
-                        value={formData.email}
-                        onChange={(value) => handleInputChange('email', value)}
-                    />
-                    <InputField
-                        key={`telephone-${resetTrigger}`}
-                        nameField={'Telephone'}
-                        typeInput={"tel"}
-                        placeholder={"put your phone number with DDD"}
-                        fieldIcon={<LocalPhoneIcon/>}
-                        value={formData.telephone}
-                        onChange={(value) => handleInputChange('telephone', value)}
-                    />
-                    <SelectField
-                        key={`services-${resetTrigger}`}
-                        nameField={"Service"}
-                        typeInput={"text"}
-                        placeholder={"select your service"}
-                        fieldIcon={<WorkIcon/>}
-                        value={formData.services}
-                        onChange={(value) => handleInputChange('services', value)}
-                        options={[
-                            { value: 'desenvolvimento', label: 'Desenvolvimento de Software' },
-                            { value: 'instalar_tv', label: 'Instalar TV' },
-                            { value: 'arquitetura', label: 'Arquitetura' }
-                        ]}
-                    />
-                    <InputField
-                        key={`project-${resetTrigger}`}
-                        nameField={'Describe your project'}
-                        typeInput={"text"}
-                        placeholder={"In a bit words describe your projects"}
-                        fieldIcon={<ChatIcon/>}
-                        value={formData.projectDescription}
-                        onChange={(value) => handleInputChange('projectDescription', value)}
-                    />
-                    <AnimatedButton
-                        onClick={handleSubmit}
-                        disabled={!isButtonEnabled}
-                    >
-                        Send infos
-                    </AnimatedButton>
+            <div id={id} className={styles.contactContainer}>
+                <div className={styles.contactContent}>
+                    <div className={styles.infoColumn}>
+                        <div className={styles.infoCard}>
+                            <h2 className={styles.infoTitle}>Why Contact Us?</h2>
+                            <p className={styles.infoText}>
+                                Our team of experts is ready to listen to your needs
+                                and offer personalized solutions that meet your expectations.
+                            </p>
+
+                            <div className={styles.featuresList}>
+                                <div className={styles.featureItem}>
+                                    <div className={styles.featureIcon}>
+                                        <AccessTimeIcon/>
+                                    </div>
+                                    <div>
+                                        <h3>Fast Response</h3>
+                                        <p>We respond within 24 hours</p>
+                                    </div>
+                                </div>
+
+                                <div className={styles.featureItem}>
+                                    <div className={styles.featureIcon}>
+                                        <GroupIcon/>
+                                    </div>
+                                    <div>
+                                        <h3>Specialized Team</h3>
+                                        <p>Professionals with market experience</p>
+                                    </div>
+                                </div>
+
+                                <div className={styles.featureItem}>
+                                    <div className={styles.featureIcon}>
+                                        <SettingsIcon/>
+                                    </div>
+                                    <div>
+                                        <h3>Custom Projects</h3>
+                                        <p>Solutions tailored to your needs</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div className={styles.testimonialCard}>
+                            <div className={styles.testimonialText}>
+                                <TextField
+                                    label={"The team exceeded all our expectations! I strongly recommend their services."}/>
+                            </div>
+                            <div className={styles.testimonialAuthor}>
+                                <div className={styles.authorInfo}>
+                                    <div className={styles.authorDetails}>
+                                        <p className={styles.authorName}>Renata</p>
+                                        <p className={styles.authorCompany}>King Bites</p>
+                                    </div>
+                                    <div className={styles.authorImageContainer}>
+                                        <Image 
+                                            src={kingbites} 
+                                            alt={"kingBites"}
+                                            className={styles.authorImage}
+                                            width={150}
+                                            height={80}
+                                            objectFit="cover"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.formColumn}>
+                        <div className={styles.containerModal}>
+                            <div className={styles.miniHeaderModal}>
+                                <div>Request Form</div>
+                                <div className={styles.headerIcons}>
+                                    <div className={styles.headerIcon}></div>
+                                </div>
+                            </div>
+
+                            <div className={styles.formIntro}>
+                                <p>Fill out the form below so we can better understand your project
+                                    and get in touch with the best solutions for you.</p>
+                            </div>
+
+                            <div className={styles.containerForm}>
+                                <div className={styles.formFieldContainer}>
+                                    <InputField
+                                        key={`name-${resetTrigger}`}
+                                        nameField={'Full Name'}
+                                        typeInput={"text"}
+                                        placeholder={"Enter your full name"}
+                                        fieldIcon={<AccountCircleIcon/>}
+                                        value={formData.name}
+                                        onChange={(value) => handleInputChange('name', value)}
+                                    />
+                                </div>
+                                <div className={styles.formFieldContainer}>
+                                    <InputField
+                                        key={`email-${resetTrigger}`}
+                                        nameField={'Email'}
+                                        typeInput={"email"}
+                                        placeholder={"example@domain.com"}
+                                        fieldIcon={<EmailIcon/>}
+                                        value={formData.email}
+                                        onChange={(value) => handleInputChange('email', value)}
+                                    />
+                                </div>
+                                <div className={styles.formFieldContainer}>
+                                    <InputField
+                                        key={`telephone-${resetTrigger}`}
+                                        nameField={'Phone'}
+                                        typeInput={"tel"}
+                                        placeholder={"Enter your phone number with area code"}
+                                        fieldIcon={<LocalPhoneIcon/>}
+                                        value={formData.telephone}
+                                        onChange={(value) => handleInputChange('telephone', value)}
+                                    />
+                                </div>
+                                <div className={styles.formFieldContainer}>
+                                    <SelectField
+                                        key={`services-${resetTrigger}`}
+                                        nameField={"Service of Interest"}
+                                        typeInput={"text"}
+                                        placeholder={"Select the desired service"}
+                                        fieldIcon={<WorkIcon/>}
+                                        value={formData.services}
+                                        onChange={(value) => handleInputChange('services', value)}
+                                        options={[
+                                            {value: 'desenvolvimento', label: 'Software Development'},
+                                            {value: 'visualizacao_arquitetonica', label: 'Architectural Visualization'},
+                                            {value: 'instalacoes_tecnicas', label: 'Technical Installations'},
+                                            {value: 'automacao_residencial', label: 'Home Automation'},
+                                            {value: 'infraestrutura_ti', label: 'IT Infrastructure'},
+                                            {value: 'consultoria_digital', label: 'Digital Presence Consulting'}
+                                        ]}
+                                    />
+                                </div>
+                                <div className={styles.formFieldContainer}>
+                                    <div className={styles.textareaContainer}>
+                                        <label className={styles.textareaLabel}>Describe your project</label>
+                                        <div className={styles.textareaWrapper}>
+                                            <textarea
+                                                key={`project-${resetTrigger}`}
+                                                className={styles.textarea}
+                                                placeholder={"Tell us a bit about what you need"}
+                                                value={formData.projectDescription}
+                                                onChange={(e) => handleInputChange('projectDescription', e.target.value)}
+                                                rows={4}
+                                            />
+                                            <div className={styles.textareaIcon}>
+                                                <ChatIcon/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className={styles.buttonContainer}>
+                                    <AnimatedButton
+                                        onClick={handleSubmit}
+                                        disabled={!isButtonEnabled}
+                                    >
+                                        Submit Request
+                                    </AnimatedButton>
+                                </div>
+                            </div>
+                            <div className={styles.formFooter}>
+                                <div className={styles.orDivider}>
+                                    <span className={styles.dividerLine}></span>
+                                    <span className={styles.orText}>or</span>
+                                    <span className={styles.dividerLine}></span>
+                                </div>
+                                <div className={styles.alternativeContact}>
+                                    <p>Contact us directly:</p>
+                                    <div className={styles.contactMethods}>
+                                        <div className={styles.contactMethod}>
+                                            <div className={styles.contactIcon}>
+                                                <EmailIcon fontSize="medium" />
+                                            </div>
+                                            <span>oneeltechsolutions@hotmail.com</span>
+                                        </div>
+                                        <div className={styles.contactMethod}>
+                                            <div className={styles.contactIcon}>
+                                                <PhoneIcon fontSize="medium" />
+                                            </div>
+                                            <span>(11) 9999-9999</span>
+                                        </div>
+                                        <div className={styles.contactMethod}>
+                                            <div className={styles.contactIcon}>
+                                                <LocationOnIcon fontSize="medium" />
+                                            </div>
+                                            <span>Boston, Massachusetts</span>
+                                        </div>
+                                        <div className={styles.contactMethod}>
+                                            <div className={styles.contactIcon}>
+                                                <ReactCountryFlag countryCode="US" svg style={{ width: '24px', height: '16px' }} />
+                                            </div>
+                                            <span>United States</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </Fragment>

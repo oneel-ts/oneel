@@ -17,56 +17,56 @@ export default function Services({id}: Props) {
     const services = [
         {
             icon: <ComputerIcon sx={{fontSize: 40}}/>,
-            title: "Desenvolvimento de Software",
+            title: "Software Development",
             items: [
-                "Criação de sites institucionais e lojas virtuais (e-commerce)",
-                "Sistemas personalizados sob medida para o seu negócio",
-                "Aplicações web e mobile com design moderno e responsivo"
+                "Creation of institutional websites and e-commerce stores",
+                "Custom tailored systems for your business",
+                "Web and mobile applications with modern, responsive design"
             ]
         },
         {
             icon: <ApartmentIcon sx={{fontSize: 40}}/>,
-            title: "Visualização Arquitetônica",
+            title: "Architectural Visualization",
             items: [
-                "Modelagem 3D de ambientes internos e externos",
-                "Renderizações realistas para apresentações e projetos",
-                "Animações e tours virtuais imersivos"
+                "3D modeling of interior and exterior environments",
+                "Realistic renderings for presentations and projects",
+                "Immersive animations and virtual tours"
             ]
         },
         {
             icon: <BuildIcon sx={{fontSize: 40}}/>,
-            title: "Instalações Técnicas",
+            title: "Technical Installations",
             items: [
-                "Instalação de sistemas de segurança com câmeras e sensores",
-                "Montagem de televisores, projetores e equipamentos multimídia",
-                "Estruturação técnica de ambientes corporativos e home office"
+                "Installation of security systems with cameras and sensors",
+                "Setup of TVs, projectors, and multimedia equipment",
+                "Technical structuring of corporate and home office environments"
             ]
         },
         {
             icon: <SecurityIcon sx={{fontSize: 40}}/>,
-            title: "Automação Residencial",
+            title: "Home Automation",
             items: [
-                "Integração de dispositivos inteligentes (luzes, persianas, etc.)",
-                "Controle remoto via aplicativo ou assistente de voz",
-                "Soluções personalizadas para conforto e segurança"
+                "Integration of smart devices (lights, blinds, etc.)",
+                "Remote control via app or voice assistant",
+                "Custom solutions for comfort and security"
             ]
         },
         {
             icon: <StorageIcon sx={{fontSize: 40}}/>,
-            title: "Infraestrutura de TI",
+            title: "IT Infrastructure",
             items: [
-                "Montagem e organização de servidores e redes locais",
-                "Manutenção preventiva e corretiva de equipamentos",
-                "Consultoria em estruturação de ambientes tecnológicos"
+                "Setup and organization of servers and local networks",
+                "Preventive and corrective equipment maintenance",
+                "Consulting on structuring technological environments"
             ]
         },
         {
             icon: <LanguageIcon sx={{fontSize: 40}}/>,
-            title: "Consultoria em Presença Digital",
+            title: "Digital Presence Consulting",
             items: [
-                "Criação e gestão de perfis em redes sociais",
-                "Otimização de conteúdo para mecanismos de busca (SEO)",
-                "Campanhas de marketing digital e anúncios online"
+                "Creation and management of social media profiles",
+                "Content optimization for search engines (SEO)",
+                "Digital marketing campaigns and online advertising"
             ]
         },
     ];
@@ -76,7 +76,7 @@ export default function Services({id}: Props) {
             <div id={id} className={styles.containerContent}>
                 <div className={styles.containerBox}>
                     <div className={styles.containerTitle}>
-                        <h1 className={`${styles.technologicalTitle} ${poppins.className}`}>Soluções Tecnológicas Integradas para o Seu Negócio</h1>
+                        <h1 className={`${styles.technologicalTitle} ${poppins.className}`}>Integrated Technological Solutions for Your Business</h1>
                     </div>
 
                     <div className={styles.servicesGrid}>
@@ -98,11 +98,11 @@ export default function Services({id}: Props) {
                     </div>
                     <div className={styles.proposalContainer}>
                         <p className={styles.proposalText}>
-                            Oferecemos uma abordagem completa para transformar sua visão em realidade. Nossa equipe
-                            combina expertise técnica com criatividade para desenvolver soluções que impulsionam
-                            seu crescimento e otimizam sua operação. Desde o desenvolvimento de software personalizado
-                            até visualizações arquitetônicas e instalações técnicas de alta qualidade, estamos
-                            comprometidos em fornecer resultados excepcionais que superam expectativas.
+                            We offer a comprehensive approach to transform your vision into reality. Our team
+                            combines technical expertise with creativity to develop solutions that drive
+                            your growth and optimize your operations. From custom software development
+                            to architectural visualizations and high-quality technical installations, we are
+                            committed to delivering exceptional results that exceed expectations.
                         </p>
                     </div>
                 </div>

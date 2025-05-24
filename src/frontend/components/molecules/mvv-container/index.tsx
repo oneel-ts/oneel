@@ -20,13 +20,15 @@ export default function MvvContainer () {
             }
         );
 
-        if (mvvSectionRef.current) {
-            observer.observe(mvvSectionRef.current);
+        const currentElement = mvvSectionRef.current;
+
+        if (currentElement) {
+            observer.observe(currentElement);
         }
 
         return () => {
-            if (mvvSectionRef.current) {
-                observer.unobserve(mvvSectionRef.current);
+            if (currentElement) {
+                observer.unobserve(currentElement);
             }
         };
     }, []);
@@ -40,11 +42,11 @@ export default function MvvContainer () {
                             <div className={styles.mvvIconWrapper}>
                                 <FontAwesomeIcon icon={faCompass} className={styles.mvvIcon} />
                             </div>
-                            <h3>Missão</h3>
+                            <h3>Mission</h3>
                             <p>
-                                Implementar soluções tecnológicas inovadoras e de alta qualidade que
-                                potencializem o crescimento das comunidades brasileiras nos EUA,
-                                transformando desafios em oportunidades através da excelência técnica.
+                                To implement innovative, high-quality technological solutions that
+                                enhance the growth of Brazilian communities in the USA,
+                                transforming challenges into opportunities through technical excellence.
                             </p>
                         </div>
 
@@ -52,11 +54,11 @@ export default function MvvContainer () {
                             <div className={styles.mvvIconWrapper}>
                                 <FontAwesomeIcon icon={faLightbulb} className={styles.mvvIcon} />
                             </div>
-                            <h3>Visão</h3>
+                            <h3>Vision</h3>
                             <p>
-                                Ser reconhecida como referência em soluções tecnológicas sob demanda
-                                para comunidades brasileiras nos EUA até 2030, estabelecendo novos
-                                padrões de inovação e acessibilidade.
+                                To be recognized as a reference in on-demand technological solutions
+                                for Brazilian communities in the USA by 2030, establishing new
+                                standards of innovation and accessibility.
                             </p>
                         </div>
 
@@ -64,12 +66,12 @@ export default function MvvContainer () {
                             <div className={styles.mvvIconWrapper}>
                                 <FontAwesomeIcon icon={faHandshake} className={styles.mvvIcon} />
                             </div>
-                            <h3>Valores</h3>
+                            <h3>Values</h3>
                             <p>
-                                Acreditamos na potência da juventude e na força de grandes sonhos, usando
-                                a tecnologia com propósito para transformar realidades. Colocamos a humanidade
-                                em primeiro lugar, atuando com colaboração, transparência e confiança para
-                                crescer junto com nossos clientes e equipe.
+                                We believe in the power of youth and the strength of big dreams, using
+                                technology with purpose to transform realities. We put humanity
+                                first, operating with collaboration, transparency, and trust to
+                                grow together with our clients and team.
                             </p>
                         </div>
                     </div>

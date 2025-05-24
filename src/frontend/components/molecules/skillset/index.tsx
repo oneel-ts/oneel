@@ -1,24 +1,27 @@
 import {Fragment, useState} from "react";
 import styles from "./skillset.module.css";
-import react from "../../../../../public/assets/skills-logo/Reactmini.svg"
-import javascript from "../../../../../public/assets/skills-logo/javascript.svg"
-import html from "../../../../../public/assets/skills-logo/html-5.svg"
-import css from "../../../../../public/assets/skills-logo/css-3-official.svg"
-import angular from "../../../../../public/assets/skills-logo/angular-icon.svg"
-import vuejs from "../../../../../public/assets/skills-logo/vue.svg"
-import node  from "../../../../../public/assets/skills-logo/nodejs_horizotal.svg"
-import php from "../../../../../public/assets/skills-logo/php_black.svg"
-import phyton from "../../../../../public/assets/skills-logo/python.svg"
-import java from "../../../../../public/assets/skills-logo/java.svg"
-import cplus from "../../../../../public/assets/skills-logo/c.svg"
-import ruby from "../../../../../public/assets/skills-logo/ruby.svg"
-import googleCloud from "../../../../../public/assets/skills-logo/google-cloud.svg"
-import aws from "../../../../../public/assets/skills-logo/aws.svg"
-import azure from "../../../../../public/assets/skills-logo/azure.svg"
-import mongoDB from "../../../../../public/assets/skills-logo/mongoDB.png"
-import mysql from "../../../../../public/assets/skills-logo/logo-mysql.png"
-import postgres from "../../../../../public/assets/skills-logo/Postgresql_elephant.svg.png"
-
+import react from "../../../../../public/assets/skills-logo/Reactmini.svg";
+import javascript from "../../../../../public/assets/skills-logo/javascript.svg";
+import html from "../../../../../public/assets/skills-logo/html-5.svg";
+import css from "../../../../../public/assets/skills-logo/css-3-official.svg";
+import angular from "../../../../../public/assets/skills-logo/angular-icon.svg";
+import vuejs from "../../../../../public/assets/skills-logo/vue.svg";
+import node  from "../../../../../public/assets/skills-logo/nodejs_horizotal.svg";
+import php from "../../../../../public/assets/skills-logo/php_black.svg";
+import phyton from "../../../../../public/assets/skills-logo/python.svg";
+import java from "../../../../../public/assets/skills-logo/java.svg";
+import cplus from "../../../../../public/assets/skills-logo/c.svg";
+import ruby from "../../../../../public/assets/skills-logo/ruby.svg";
+import googleCloud from "../../../../../public/assets/skills-logo/google-cloud.svg";
+import aws from "../../../../../public/assets/skills-logo/aws.svg";
+import azure from "../../../../../public/assets/skills-logo/azure.svg";
+import mongoDB from "../../../../../public/assets/skills-logo/mongoDB.png";
+import mysql from "../../../../../public/assets/skills-logo/logo-mysql.png";
+import postgres from "../../../../../public/assets/skills-logo/Postgresql_elephant.svg.png";
+import lumion from "../../../../../public/assets/skills-logo/Lumion icon.png";
+import sketchup from "../../../../../public/assets/skills-logo/Icon Sketchup.png";
+import enscape from "../../../../../public/assets/skills-logo/Ensccape icon.png";
+import autocad from "../../../../../public/assets/skills-logo/Autocad Icon.png";
 import Image from "next/image";
 
 export default function Skillset() {
@@ -45,7 +48,6 @@ export default function Skillset() {
     return (
         <Fragment>
             <div className={styles.containerSkills}>
-                
                 <div className={styles.tabsContainer}>
                     {tabs.map((tab) => (
                         <button
@@ -57,8 +59,6 @@ export default function Skillset() {
                         </button>
                     ))}
                 </div>
-                
-
                 <div className={styles.contentContainer}>
                     <div className={`${styles.content} ${animating ? styles.fadeOut : styles.fadeIn}`}>
                         {activeTab === "frontend" && (
@@ -122,9 +122,23 @@ export default function Skillset() {
                         )}
 
                         {activeTab === "architecture" && (
-                            <div className={styles.tabContent}>
-                                <h3>Architecture Skills</h3>
-                                <p>Conteúdo relacionado à Arquitetura</p>
+                            <div className={styles.techGrid}>
+                                <div className={styles.techItem}>
+                                    <Image alt={"Node.js"} src={lumion} width={100} height={100}/>
+                                    <span className={styles.techName} style={{color: "#FFFFFF"}}>Lumion</span>
+                                </div>
+                                <div className={styles.techItem}>
+                                    <Image alt={"Python"} src={sketchup} width={100} height={100}/>
+                                    <span className={styles.techName} style={{color: "#005F9E"}}>Sketchup</span>
+                                </div>
+                                <div className={styles.techItem}>
+                                    <Image alt={"Java"} src={enscape} width={90} height={100}/>
+                                    <span className={styles.techName} style={{color: "#EE6C0F"}}>Enscape</span>
+                                </div>
+                                <div className={styles.techItem}>
+                                    <Image alt={"PHP"} src={autocad} width={100} height={100}/>
+                                    <span className={styles.techName} style={{color: "#E51051"}}>Autocad</span>
+                                </div>
                             </div>
                         )}
 
