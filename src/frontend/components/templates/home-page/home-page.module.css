@@ -22,13 +22,14 @@
 }
 
 .contentContainer {
-    width: 1280px;
+    width: 100%;
+    max-width: 1280px;
     gap: 10vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
-    padding-top: 17vh;
+    padding: 17vh 20px 40px;
 }
 
 .containerCards {
@@ -38,14 +39,12 @@
     align-items: center;
     justify-content: space-around;
     gap: 20px;
+    flex-wrap: wrap;
 }
-
 
 .containerService {
     width: 100%;
-    /* Substitua height: 100vh por min-height para permitir expansão se necessário */
     min-height: 100vh;
-    /* Use auto em vez de 100vh para permitir que o contêiner se expanda conforme o conteúdo */
     height: auto;
     background-image: linear-gradient(to bottom,
     #0c1128 0%,
@@ -57,10 +56,30 @@
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
-    /* Adicione padding para melhor espaçamento */
-    padding: 30px 0;
-    /* Adicione gap entre os componentes */
-    gap: 30px;
-    /* Ajuste overflow para hidden para evitar barras de rolagem não desejadas */
-    /*overflow: hidden;*/
+}
+
+@media (max-width: 1024px) {
+    .contentContainer {
+        padding-top: 14vh;
+        gap: 8vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .contentContainer {
+        margin-top: 6vh;
+        gap: 6vh;
+    }
+    
+    .containerCards {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contentContainer {
+        padding-top: 8vh;
+        gap: 5vh;
+    }
 }

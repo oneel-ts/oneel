@@ -20,75 +20,33 @@ export default function Projects ({id} : Props) {
     const [loaded, setLoaded] = useState(false);
     const [isFirstSlide, setIsFirstSlide] = useState(true);
     const [isLastSlide, setIsLastSlide] = useState(false);
-    
-    const [sliderRef, instanceRef] = useKeenSlider(
-        {
-            initial: 0,
-            slides: {
-                perView: 1,
-                spacing: 0,
-            },
-            loop: false,
-            mode: "free-snap",
-            dragSpeed: 1.5,
-            slideChanged(slider) {
-                const slideIndex = slider.track.details.rel;
-                setCurrentSlide(slideIndex);
-                setIsFirstSlide(slideIndex === 0);
-                setIsLastSlide(slideIndex === slider.track.details.slides.length - 1);
-            },
-            created(slider) {
-                setLoaded(true);
-                setIsFirstSlide(true);
-                setIsLastSlide(slider.track.details.slides.length <= 1);
-            },
-            defaultAnimation: {
-                duration: 400,
-                easing: t => t * (2 - t)
-            },
-            rubberband: false,
+
+    const [sliderRef, instanceRef] = useKeenSlider({
+        initial: 0,
+        slides: {
+            perView: 1,
+            spacing: 0,
         },
-        [
-            (slider) => {
-                let timeout: ReturnType<typeof setTimeout>;
-                let mouseOver = false;
-                
-                function clearNextTimeout() {
-                    clearTimeout(timeout);
-                }
-                
-                function nextTimeout() {
-                    clearTimeout(timeout);
-                    if (mouseOver) return;
-                    timeout = setTimeout(() => {
-                        if (!isLastSlide) {
-                            slider.next();
-                        } else {
-                            slider.moveToIdx(0);
-                        }
-                    }, 5000);
-                }
-                
-                slider.on("created", () => {
-                    nextTimeout();
-                });
-                
-                slider.on("dragStarted", clearNextTimeout);
-                slider.on("animationEnded", nextTimeout);
-                slider.on("updated", nextTimeout);
-                
-                slider.container.addEventListener("mouseenter", () => {
-                    mouseOver = true;
-                    clearNextTimeout();
-                });
-                
-                slider.container.addEventListener("mouseleave", () => {
-                    mouseOver = false;
-                    nextTimeout();
-                });
-            }
-        ]
-    );
+        loop: false,
+        mode: "snap",
+        dragSpeed: 0.5,
+        slideChanged(slider) {
+            const slideIndex = slider.track.details.rel;
+            setCurrentSlide(slideIndex);
+            setIsFirstSlide(slideIndex === 0);
+            setIsLastSlide(slideIndex === slider.track.details.slides.length - 1);
+        },
+        created(slider) {
+            setLoaded(true);
+            setIsFirstSlide(true);
+            setIsLastSlide(slider.track.details.slides.length <= 1);
+        },
+        defaultAnimation: {
+            duration: 400,
+            easing: t => t * (2 - t)
+        },
+        rubberband: false,
+    });
 
     const projects = [
         {
@@ -133,76 +91,76 @@ export default function Projects ({id} : Props) {
         <Fragment>
             <div id={id} className={styles.contentContainer}>
                 <div className={styles.containerBox}>
+                    <div className={styles.containerTitle}>
+                        <h1 className={styles.techTitle}>Projects and Technologies</h1>
+                    </div>
+
+                    <div className={`${styles.sliderContainer} navigation-wrapper`}>
+                        <div ref={sliderRef} className="keen-slider">
+                            {projects.map((project) => (
+                                <div
+                                    key={project.id}
+                                    className={`keen-slider__slide ${styles.projectSlide}`}
+                                    aria-label={currentSlide === project.id - 1 ? "active slide" : "slide"}
+                                >
+                                    <div className={styles.projectImageContainer}>
+                                        <Image
+                                            width={1280}
+                                            height={0}
+                                            src={project.image.src}
+                                            alt={project.title}
+                                            className={styles.projectImage}
+                                            priority={project.id === 1}
+                                        />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {loaded && instanceRef.current && (
+                            <>
+                                <Arrow
+                                    left
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        instanceRef.current?.prev();
+                                    }}
+                                    disabled={isFirstSlide}
+                                />
+
+                                <Arrow
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        instanceRef.current?.next();
+                                    }}
+                                    disabled={isLastSlide}
+                                />
+                            </>
+                        )}
+                    </div>
+
+                    {loaded && instanceRef.current && (
+                        <div className={styles.dots}>
+                            {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => {
+                                return (
+                                    <button
+                                        key={idx}
+                                        onClick={() => {
+                                            instanceRef.current?.moveToIdx(idx);
+                                        }}
+                                        aria-label={`Go to slide ${idx + 1}`}
+                                        className={`${styles.dot} ${currentSlide === idx ? styles.active : ""}`}
+                                    ></button>
+                                );
+                            })}
+                        </div>
+                    )}
                     <div className={styles.skillsSection}>
                         <div className={styles.containerTitle}>
                             <h1 className={styles.techTitle}>Skillsets</h1>
                         </div>
                         <Skillset/>
                     </div>
-                    {/*<div className={styles.containerTitle}>*/}
-                    {/*    <h1 className={styles.techTitle}>Projects and Technologies</h1>*/}
-                    {/*</div>*/}
-
-                    {/*<div className={`${styles.sliderContainer} navigation-wrapper`}>*/}
-                    {/*    <div ref={sliderRef} className="keen-slider">*/}
-                    {/*        {projects.map((project) => (*/}
-                    {/*            <div*/}
-                    {/*                key={project.id}*/}
-                    {/*                className={`keen-slider__slide ${styles.projectSlide}`}*/}
-                    {/*                aria-label={currentSlide === project.id - 1 ? "active slide" : "slide"}*/}
-                    {/*            >*/}
-                    {/*                <div className={styles.projectImageContainer}>*/}
-                    {/*                    <Image*/}
-                    {/*                        width={1280}*/}
-                    {/*                        height={0}*/}
-                    {/*                        src={project.image.src}*/}
-                    {/*                        alt={project.title}*/}
-                    {/*                        className={styles.projectImage}*/}
-                    {/*                        priority={project.id === 1}*/}
-                    {/*                    />*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*        ))}*/}
-                    {/*    </div>*/}
-
-                    {/*    {loaded && instanceRef.current && (*/}
-                    {/*        <>*/}
-                    {/*            <Arrow*/}
-                    {/*                left*/}
-                    {/*                onClick={(e) => {*/}
-                    {/*                    e.stopPropagation();*/}
-                    {/*                    instanceRef.current?.prev();*/}
-                    {/*                }}*/}
-                    {/*                disabled={isFirstSlide}*/}
-                    {/*            />*/}
-
-                    {/*            <Arrow*/}
-                    {/*                onClick={(e) => {*/}
-                    {/*                    e.stopPropagation();*/}
-                    {/*                    instanceRef.current?.next();*/}
-                    {/*                }}*/}
-                    {/*                disabled={isLastSlide}*/}
-                    {/*            />*/}
-                    {/*        </>*/}
-                    {/*    )}*/}
-                    {/*</div>*/}
-
-                    {/*{loaded && instanceRef.current && (*/}
-                    {/*    <div className={styles.dots}>*/}
-                    {/*        {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => {*/}
-                    {/*            return (*/}
-                    {/*                <button*/}
-                    {/*                    key={idx}*/}
-                    {/*                    onClick={() => {*/}
-                    {/*                        instanceRef.current?.moveToIdx(idx);*/}
-                    {/*                    }}*/}
-                    {/*                    aria-label={`Go to slide ${idx + 1}`}*/}
-                    {/*                    className={`${styles.dot} ${currentSlide === idx ? styles.active : ""}`}*/}
-                    {/*                ></button>*/}
-                    {/*            );*/}
-                    {/*        })}*/}
-                    {/*    </div>*/}
-                    {/*)}*/}
                 </div>
             </div>
         </Fragment>

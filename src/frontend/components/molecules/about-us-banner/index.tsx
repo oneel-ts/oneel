@@ -14,18 +14,18 @@ export default function AboutUsBanner () {
 
                     <div className={styles.aboutGrid}>
                         <div className={styles.aboutContent}>
-                            <h2 className={styles.sectionTitle}>Quem Somos</h2>
+                            <h2 className={styles.sectionTitle}>Who We Are</h2>
                             <p>
-                                Somos uma empresa de tecnologia dedicada a fornecer soluções inovadoras
-                                para seu negócio. Oferecemos serviços de programação,
-                                cibersegurança, cloud computing, design 3D e muito mais, sempre com foco
-                                em resultados de qualidade e um atendimento personalizado.
+                                We are a technology company dedicated to providing innovative solutions
+                                for your business. We offer programming services,
+                                cybersecurity, cloud computing, 3D design, and much more, always focusing
+                                on quality results and personalized service.
                             </p>
                         </div>
                         <div className={styles.aboutImage}>
                             <Image
                                 src={image}
-                                alt="Equipe Oneel Tech Solutions"
+                                alt="Oneel Tech Solutions Team"
                             />
                         </div>
                     </div>
