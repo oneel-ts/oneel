@@ -14,12 +14,44 @@ type Props = {
 export default function HeaderDefault({handlerOpenForm} : Props) {
     const [animationState, setAnimationState] = useState<'initial' | 'expanding' | 'finished'>('initial');
     const [isMobile, setIsMobile] = useState(false);
+    const [translateValues, setTranslateValues] = useState({
+        initialLeft: -20,
+        initialRight: 20,
+        expandedLeft: -95,
+        expandedRight: 95
+    });
 
     useEffect(() => {
+        const getTranslateValues = () => {
+            if (window.innerWidth <= 480) {
+                return {
+                    initialLeft: -8,
+                    initialRight: 8,
+                    expandedLeft: -25,
+                    expandedRight: 25
+                };
+            } else if (window.innerWidth <= 768) {
+                return {
+                    initialLeft: -10,
+                    initialRight: 10,
+                    expandedLeft: -35,
+                    expandedRight: 35
+                };
+            } else {
+                return {
+                    initialLeft: -20,
+                    initialRight: 20,
+                    expandedLeft: -95,
+                    expandedRight: 95
+                };
+            }
+        };
+
         const checkMobile = () => {
             setIsMobile(window.innerWidth <= 768);
+            setTranslateValues(getTranslateValues());
         };
-        
+
         checkMobile();
         window.addEventListener('resize', checkMobile);
 
@@ -49,33 +81,45 @@ export default function HeaderDefault({handlerOpenForm} : Props) {
                                 transition: 'opacity 0.8s ease-in-out'
                             }}
                         >
-                            <Image 
-                                src={oneel} 
-                                alt={"oneel"} 
-                                width={isMobile ? 120 : 220} 
-                                height={isMobile ? 240 : 480} 
+                            <Image
+                                src={oneel}
+                                alt={"oneel"}
+                                width={isMobile ? 60 : 220}
+                                height={isMobile ? 120 : 480}
                                 style={{borderRadius:"16px"}}
                             />
                         </div>
                         <div
                             className={styles.leftArrow}
                             style={{
-                                transform: animationState !== 'initial' ? 'translateX(-95px)' : 'translateX(-20px)',
+                                transform: animationState !== 'initial'
+                                    ? `translateX(${translateValues.expandedLeft}px)`
+                                    : `translateX(${translateValues.initialLeft}px)`,
                                 opacity: animationState === 'finished' ? 0 : 1,
                                 transition: 'transform 1s ease-in-out, opacity 0.5s ease-in-out'
                             }}
                         >
-                            <Image src={oneelArrowLeft} alt={"oneel"} width={100} height={480} style={{borderRadius:"16px"}}/>
+                            <Image src={oneelArrowLeft} alt={"oneel"}
+                                   width={isMobile ? 40 : 100}
+                                   height={isMobile ? 200 : 480}
+                                   style={{borderRadius:"16px"}}
+                            />
                         </div>
                         <div
                             className={styles.rightArrow}
                             style={{
-                                transform: animationState !== 'initial' ? 'translateX(95px)' : 'translateX(20px)',
+                                transform: animationState !== 'initial'
+                                    ? `translateX(${translateValues.expandedRight}px)`
+                                    : `translateX(${translateValues.initialRight}px)`,
                                 opacity: animationState === 'finished' ? 0 : 1,
                                 transition: 'transform 1s ease-in-out, opacity 0.5s ease-in-out'
                             }}
                         >
-                            <Image src={oneelArrowRigth} alt={"oneel"} width={100} height={480} style={{borderRadius:"16px"}}/>
+                            <Image src={oneelArrowRigth} alt={"oneel"}
+                                   width={isMobile ? 40 : 100}
+                                   height={isMobile ? 200 : 480}
+                                   style={{borderRadius:"16px"}}
+                            />
                         </div>
                     </div>
                     {!isMobile && <NavigateBar />}

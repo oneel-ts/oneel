@@ -51,21 +51,10 @@ export default function NavigateBar() {
 
         const element = document.getElementById(itemId);
         if (element) {
-            if (itemId === 'about') {
-                const headerHeight = 80;
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            } else {
-                element.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
-            }
+            element.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
         }
     };
 

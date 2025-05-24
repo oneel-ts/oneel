@@ -11,8 +11,8 @@ type Props = {
 export default function AboutUs({id}: Props) {
     return (
         <Fragment>
-            <div id={id} className={styles.container}>
-                <AboutUsBanner/>
+            <div className={styles.container}>
+                <AboutUsBanner id={id}/>
                 <Ods
                     ids={[1, 2, 4, 8, 9, 10, 11, 17]}
                     size="large"

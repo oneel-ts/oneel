@@ -158,7 +158,7 @@ export default function ContactUsForm({id}: Props) {
     return (
         <Fragment>
             <ToastContainer/>
-            <div id={id} className={styles.contactContainer}>
+            <div className={styles.contactContainer}>
                 <div className={styles.contactContent}>
                     <div className={styles.infoColumn}>
                         <div className={styles.infoCard}>
@@ -227,7 +227,7 @@ export default function ContactUsForm({id}: Props) {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.formColumn}>
+                    <div id={id} className={styles.formColumn}>
                         <div className={styles.containerModal}>
                             <div className={styles.miniHeaderModal}>
                                 <div>Request Form</div>
@@ -285,12 +285,12 @@ export default function ContactUsForm({id}: Props) {
                                         value={formData.services}
                                         onChange={(value) => handleInputChange('services', value)}
                                         options={[
-                                            {value: 'desenvolvimento', label: 'Software Development'},
-                                            {value: 'visualizacao_arquitetonica', label: 'Architectural Visualization'},
-                                            {value: 'instalacoes_tecnicas', label: 'Technical Installations'},
-                                            {value: 'automacao_residencial', label: 'Home Automation'},
-                                            {value: 'infraestrutura_ti', label: 'IT Infrastructure'},
-                                            {value: 'consultoria_digital', label: 'Digital Presence Consulting'}
+                                            {value: 'Software Development', label: 'Software Development'},
+                                            {value: 'Architectural Visualization', label: 'Architectural Visualization'},
+                                            {value: 'Technical Installations', label: 'Technical Installations'},
+                                            {value: 'Home Automation', label: 'Home Automation'},
+                                            {value: 'IT Infrastructure', label: 'IT Infrastructure'},
+                                            {value: 'Digital Presence Consulting', label: 'Digital Presence Consulting'}
                                         ]}
                                     />
                                 </div>
@@ -341,7 +341,7 @@ export default function ContactUsForm({id}: Props) {
                                             <div className={styles.contactIcon}>
                                                 <PhoneIcon fontSize="medium" />
                                             </div>
-                                            <span>(11) 9999-9999</span>
+                                            <span>(857)8800790</span>
                                         </div>
                                         <div className={styles.contactMethod}>
                                             <div className={styles.contactIcon}>

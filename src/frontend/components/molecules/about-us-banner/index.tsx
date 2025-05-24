@@ -3,10 +3,14 @@ import styles from "./about-us-banner.module.css";
 import Image from "next/image";
 import image from "@/public/assets/empresario-de-baixo-angulo.jpg";
 
-export default function AboutUsBanner () {
+type Props = {
+    id: string;
+}
+
+export default function AboutUsBanner ({id} : Props) {
     return (
         <Fragment>
-            <div className={styles.contentContainer}>
+            <div id={id} className={styles.contentContainer}>
                 <div className={styles.containerBox}>
                     <div className={styles.header}>
                         <h1>Oneel Tech Solutions</h1>
