@@ -3,9 +3,9 @@
     max-width: 500px;
     position: relative;
     margin-bottom: 20px;
-    --border-color: #00FF9C;
+    --border-color: #10CDC4;
     --border-color-hover: #4635B1;
-    --icon-color: #00cc7d;
+    --icon-color: #10CDC4;
     --placeholder-color: #c5c3c3;
     --placeholder-color-hover: #5a4bbf;
     --transition-time: 0.6s;

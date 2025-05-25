@@ -1,6 +1,5 @@
 import {Fragment, useEffect, useState} from "react";
 import styles from "./home-page-header.module.css"
-import NavigateBar from "@/src/frontend/components/molecules/navigate-bar";
 import ButtonContactUs from "src/frontend/components/molecules/button-contact-us";
 import Image from "next/image";
 import oneel from "../../../../../public/assets/oneel.png"
@@ -15,27 +14,20 @@ export default function HeaderDefault({handlerOpenForm} : Props) {
     const [animationState, setAnimationState] = useState<'initial' | 'expanding' | 'finished'>('initial');
     const [isMobile, setIsMobile] = useState(false);
     const [translateValues, setTranslateValues] = useState({
-        initialLeft: -20,
-        initialRight: 20,
+        initialLeft: -0,
+        initialRight: 0,
         expandedLeft: -95,
         expandedRight: 95
     });
 
     useEffect(() => {
         const getTranslateValues = () => {
-            if (window.innerWidth <= 480) {
+            if (window.innerWidth <= 768) {
                 return {
-                    initialLeft: -8,
-                    initialRight: 8,
+                    initialLeft: 0,
+                    initialRight: 0,
                     expandedLeft: -25,
                     expandedRight: 25
-                };
-            } else if (window.innerWidth <= 768) {
-                return {
-                    initialLeft: -10,
-                    initialRight: 10,
-                    expandedLeft: -35,
-                    expandedRight: 35
                 };
             } else {
                 return {
@@ -122,7 +114,7 @@ export default function HeaderDefault({handlerOpenForm} : Props) {
                             />
                         </div>
                     </div>
-                    {!isMobile && <NavigateBar />}
+                    {/*{!isMobile && <NavigateBar />}*/}
                     <ButtonContactUs handlerOpenForm={handlerOpenForm}/>
                 </header>
             </section>
