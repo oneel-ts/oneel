@@ -59,17 +59,17 @@ export default function NavigateBar() {
     };
 
     return (
-        <div className={`${styles.containerNavigation} ${poppins.className}`}>
+        <section className={`${styles.containerNavigation} ${poppins.className}`}>
             {navigationItems.map((item) => (
-                <div
+                <ul
                     key={item.id}
                     onClick={() => handleNavClick(item.id)}
                 >
-                    <div className={activeTab === item.id ? styles.selectedTab : styles.navigateButtons}>
+                    <li className={activeTab === item.id ? styles.selectedTab : styles.navigateButtons}>
                         {item.label}
-                    </div>
-                </div>
+                    </li>
+                </ul>
             ))}
-        </div>
+        </section>
     );
 }

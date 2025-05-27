@@ -46,132 +46,182 @@ export default function Skillset() {
     ];
 
     return (
-        <Fragment>
-            <div className={styles.containerSkills}>
-                <div className={styles.tabsContainer}>
-                    {tabs.map((tab) => (
-                        <button
-                            key={tab.id}
-                            className={`${styles.tabButton} ${activeTab === tab.id ? styles.active : ""}`}
-                            onClick={() => handleTabChange(tab.id)}
-                        >
-                            {tab.label}
-                        </button>
-                    ))}
-                </div>
-                <div className={styles.contentContainer}>
-                    <div className={`${styles.content} ${animating ? styles.fadeOut : styles.fadeIn}`}>
-                        {activeTab === "frontend" && (
-                            <div className={styles.tabContent}>
-                                <div className={styles.techGrid}>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"React"} src={react} width={100} height={100}/>
-                                        <span className={styles.techName} style={{color: "#61DAFB"}}>React</span>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"JavaScript"} src={javascript} width={100} height={100}/>
-                                        <span className={styles.techName} style={{color: "#F7DF1E"}}>JavaScript</span>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"HTML"} src={html} width={100} height={100}/>
-                                        <span className={styles.techName} style={{color: "#E34F26"}}>HTML</span>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"CSS"} src={css} width={100} height={100}/>
-                                        <span className={styles.techName} style={{color: "#1572B6"}}>CSS</span>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"Angular"} src={angular} width={100} height={100}/>
-                                        <span className={styles.techName} style={{color: "#E23237"}}>Angular</span>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"Vue.js"} src={vuejs} width={100} height={100}/>
-                                        <span className={styles.techName} style={{color: "#4FC08D"}}>Vue.js</span>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+        <div className={styles.containerSkills}>
+            <nav className={styles.tabsContainer} aria-label="Categorias de habilidades">
+                {tabs.map((tab) => (
+                    <button
+                        key={tab.id}
+                        className={`${styles.tabButton} ${activeTab === tab.id ? styles.active : ""}`}
+                        onClick={() => handleTabChange(tab.id)}
+                        aria-selected={activeTab === tab.id}
+                        aria-controls={`tab-content-${tab.id}`}
+                        id={`tab-${tab.id}`}
+                        role="tab"
+                    >
+                        {tab.label}
+                    </button>
+                ))}
+            </nav>
+            <div className={styles.contentContainer}>
+                <div
+                    className={`${styles.content} ${animating ? styles.fadeOut : styles.fadeIn}`}
+                    role="tabpanel"
+                    aria-labelledby={`tab-${activeTab}`}
+                    id={`tab-content-${activeTab}`}
+                >
+                    {activeTab === "frontend" && (
+                        <ul className={styles.techGrid} aria-label="Tecnologias Frontend">
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={react} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#61DAFB"}}>React</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={javascript} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#F7DF1E"}}>JavaScript</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={html} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#E34F26"}}>HTML</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={css} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#1572B6"}}>CSS</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={angular} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#E23237"}}>Angular</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={vuejs} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#4FC08D"}}>Vue.js</figcaption>
+                                </figure>
+                            </li>
+                        </ul>
+                    )}
 
-                        {activeTab === "backend" && (
-                            <div className={styles.tabContent}>
-                                <div className={styles.techGrid}>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"Node.js"} src={node} width={100} height={100}/>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"Python"} src={phyton} width={100} height={100}/>
-                                        <span className={styles.techName} style={{color: "#3776AB"}}>Python</span>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"Java"} src={java} width={90} height={100}/>
-                                        <span className={styles.techName} style={{color: "#5382A1"}}>Java</span>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"PHP"} src={php} width={100} height={100}/>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"Ruby"} src={ruby} width={100} height={100}/>
-                                        <span className={styles.techName} style={{color: "#CC342D"}}>Ruby</span>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"C#"} src={cplus} width={100} height={100}/>
-                                        <span className={styles.techName} style={{color: "#1A4674"}}>C#</span>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+                    {activeTab === "backend" && (
+                        <ul className={styles.techGrid} aria-label="Tecnologias Backend">
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={node} width={100} height={100}/>
+                                    <figcaption className={styles.techName}>Node.js</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={phyton} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#3776AB"}}>Python</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={java} width={90} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#5382A1"}}>Java</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={php} width={100} height={100}/>
+                                    <figcaption className={styles.techName}>PHP</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={ruby} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#CC342D"}}>Ruby</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={cplus} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#1A4674"}}>C#</figcaption>
+                                </figure>
+                            </li>
+                        </ul>
+                    )}
 
-                        {activeTab === "architecture" && (
-                            <div className={styles.techGrid}>
-                                <div className={styles.techItem}>
-                                    <Image alt={"Node.js"} src={lumion} width={100} height={100}/>
-                                    <span className={styles.techName} style={{color: "#FFFFFF"}}>Lumion</span>
-                                </div>
-                                <div className={styles.techItem}>
-                                    <Image alt={"Python"} src={sketchup} width={100} height={100}/>
-                                    <span className={styles.techName} style={{color: "#005F9E"}}>Sketchup</span>
-                                </div>
-                                <div className={styles.techItem}>
-                                    <Image alt={"Java"} src={enscape} width={90} height={100}/>
-                                    <span className={styles.techName} style={{color: "#EE6C0F"}}>Enscape</span>
-                                </div>
-                                <div className={styles.techItem}>
-                                    <Image alt={"PHP"} src={autocad} width={100} height={100}/>
-                                    <span className={styles.techName} style={{color: "#E51051"}}>Autocad</span>
-                                </div>
-                            </div>
-                        )}
+                    {activeTab === "architecture" && (
+                        <ul className={styles.techGrid} aria-label="Tecnologias de Arquitetura">
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={lumion} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#FFFFFF"}}>Lumion</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={sketchup} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#005F9E"}}>Sketchup</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={enscape} width={90} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#EE6C0F"}}>Enscape</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={autocad} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#E51051"}}>Autocad</figcaption>
+                                </figure>
+                            </li>
+                        </ul>
+                    )}
 
-                        {activeTab === "cloud" && (
-                            <div className={styles.tabContent}>
-                                <div className={styles.techGrid}>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"React"} src={googleCloud} width={100} height={100}/>
-                                        <span className={styles.techName} style={{color: "#FFFFFF"}}>Google Cloud</span>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"JavaScript"} src={aws} width={100} height={100}/>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"HTML"} src={azure} width={100} height={100}/>
-                                        <span className={styles.techName} style={{color: "#008CDB"}}>Azure</span>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"HTML"} src={mongoDB} width={175} height={150}/>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"HTML"} src={mysql} width={150} height={100}/>
-                                    </div>
-                                    <div className={styles.techItem}>
-                                        <Image alt={"HTML"} src={postgres} width={85} height={100}/>
-                                        <span className={styles.techName} style={{ color: "#326990" }}>PostgreSQL</span>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
+                    {activeTab === "cloud" && (
+                        <ul className={styles.techGrid} aria-label="Tecnologias de Nuvem e Banco de Dados">
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={googleCloud} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#FFFFFF"}}>Google Cloud</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={aws} width={100} height={100}/>
+                                    <figcaption className={styles.techName}>AWS</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={azure} width={100} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#008CDB"}}>Azure</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={mongoDB} width={175} height={150}/>
+                                    <figcaption className={styles.techName}>MongoDB</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={mysql} width={150} height={100}/>
+                                    <figcaption className={styles.techName}>MySQL</figcaption>
+                                </figure>
+                            </li>
+                            <li className={styles.techItem}>
+                                <figure>
+                                    <Image alt="" src={postgres} width={85} height={100}/>
+                                    <figcaption className={styles.techName} style={{color: "#326990"}}>PostgreSQL</figcaption>
+                                </figure>
+                            </li>
+                        </ul>
+                    )}
                 </div>
             </div>
-        </Fragment>
+        </div>
     );
 }

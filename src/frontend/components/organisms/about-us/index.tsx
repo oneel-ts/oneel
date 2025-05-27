@@ -11,17 +11,16 @@ type Props = {
 export default function AboutUs({id}: Props) {
     return (
         <Fragment>
-            <div className={styles.container}>
+            <section className={styles.container}>
                 <AboutUsBanner id={id}/>
                 <Ods
                     ids={[1, 2, 4, 8, 9, 10, 11, 17]}
                     size="large"
                     layout="grid"
-                    onClick={() => {
-                    }}
+                    onClick={() => {}}
                 />
                 <MvvContainer/>
-            </div>
+            </section>
         </Fragment>
     );
 }

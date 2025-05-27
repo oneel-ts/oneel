@@ -41,7 +41,7 @@ export default function Ods({
                                 onClick,
                                 style
                             }: OdsProps) {
-    const containerRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLElement>(null);
 
     const items = ids ? sdgItems.filter(item => ids.includes(item.id)) : sdgItems;
 
@@ -77,46 +77,52 @@ export default function Ods({
     };
 
     return (
-        <div
+        <section
             ref={containerRef}
             className={styles.odsContainer}
             style={style}
         >
-            <div className={styles.odsInner}>
-                <div className={styles.odsTitle}>
-                    <div className={styles.odsFlexContainer}>
-                        <div className={styles.odsImageContainer}>
-                            <Image src={odsLogo} alt="Sustainable Development Goals Logo" width={300} height={200}/>
-                        </div>
-                        <div className={styles.odsTextContainer}>
+            <article className={styles.odsInner}>
+                <header className={styles.odsTitle}>
+                    <figure className={styles.odsFlexContainer}>
+                        <Image
+                            src={odsLogo}
+                            alt="Logotipo dos Objetivos de Desenvolvimento Sustentável"
+                            width={300}
+                            height={200}
+                            className={styles.odsImageContainer}
+                        />
+                        <figcaption className={styles.odsTextContainer}>
                             <h2>Sustainable Development Goals</h2>
-                            <div className={styles.odsDivider}></div>
+                            <hr className={styles.odsDivider} aria-hidden="true" />
                             <p>
                                 Our commitment to the UN 2030 Agenda and the development of solutions
                                 that positively impact society and the planet.
                             </p>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles.odsGridContainer}>
-                    <div className={styles.odsGrid}>
+                        </figcaption>
+                    </figure>
+                </header>
+
+                <section className={styles.odsGridContainer}>
+                    <ul className={styles.odsGrid} aria-label="Lista de Objetivos de Desenvolvimento Sustentável">
                         {items.map((item) => (
-                            <div
+                            <li
                                 key={item.id}
                                 className={styles.odsCard}
                                 onClick={() => handleItemClick(item.id)}
                             >
-                                <div
+                                <figure
                                     className={styles.odsIconBox}
                                     style={{
                                         background: `rgba(${item.color.replace('#', '')
                                             .match(/.{2}/g)?.map(c => parseInt(c, 16))
                                             .join(', ')}, 0.1)`
                                     }}
+                                    aria-hidden="true"
                                 >
                                     <FontAwesomeIcon icon={item.icon} style={{ color: item.color }} />
-                                </div>
-                                <div className={styles.odsContent}>
+                                </figure>
+                                <article className={styles.odsContent}>
                                     <h3 style={{
                                         color: item.color,
                                         textShadow: `0 0 10px ${item.glowColor}`
@@ -124,12 +130,12 @@ export default function Ods({
                                         SDG {item.id}: {item.title}
                                     </h3>
                                     <p>{item.description}</p>
-                                </div>
-                            </div>
+                                </article>
+                            </li>
                         ))}
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </ul>
+                </section>
+            </article>
+        </section>
     );
 }

@@ -57,12 +57,12 @@ export default function Brands() {
 
     return (
         <Fragment>
-            <section className={`${styles.container} ${poppins.className}`}>
+            <main className={`${styles.container} ${poppins.className}`}>
                 <HeaderDefault handlerOpenForm={handlerOpenForm}/>
                 <section id={"home"} className={styles.containerBox}>
-                    <div className={styles.contentContainer}>
+                    <article className={styles.contentContainer}>
                         <Banner viewOurServices={viewOurServices}/>
-                        <div className={styles.containerCards}>
+                        <ul className={styles.containerCards}>
                             {cardsInfos.map((card, index) => (
                                 <CardsHome
                                     key={index}
@@ -71,16 +71,16 @@ export default function Brands() {
                                     cardTitle={card.title}
                                 />
                             ))}
-                        </div>
-                    </div>
+                        </ul>
+                    </article>
                 </section>
-                <div className={styles.containerService}>
+                <aside className={styles.containerService}>
                     <Services id={"services"}/>
                     <Projects id={"projects"}/>
                     <AboutUs id={"about"}/>
                     <ContactUsForm id={"form"}/>
-                </div>
-            </section>
+                </aside>
+            </main>
         </Fragment>
     );
 }

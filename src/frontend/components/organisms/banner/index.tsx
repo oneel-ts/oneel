@@ -10,18 +10,23 @@ type Props = {
 export default function Banner ({viewOurServices} : Props) {
     return (
         <Fragment>
-            <div className={styles.textContainer}>
-                <div className={`${styles.title} ${poppins.className}`}>
+            <section className={styles.textContainer}>
+                <h1 className={`${styles.title} ${poppins.className}`}>
                     <TextField label={"Smart Solutions to Boost Your Project"}/>
-                </div>
+                </h1>
                 <div className={`${styles.subtitle} ${poppins.className}`}>
                     <TextField title={false}
                                label={"We transform ideas into concrete results, combining technology, dedicated work, and excellence in execution to drive your projects efficiently and securely."}/>
                 </div>
-                <div onClick={viewOurServices} className={styles.serviceButton}>
+                <button
+                    onClick={viewOurServices}
+                    className={styles.serviceButton}
+                    type="button"
+                    aria-label="Ver nossos serviços"
+                >
                     <TextField label={"View our services"} title={false}/>
-                </div>
-            </div>
+                </button>
+            </section>
         </Fragment>
     )
 }

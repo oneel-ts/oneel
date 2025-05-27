@@ -10,22 +10,22 @@ type Props = {
 export default function CardsHome ({cardIcon, cardTitle, cardDescription} : Props) {
     return (
         <Fragment>
-            <div className={styles.parent}>
-                <div className={styles.card}>
-                    <div className={styles.glass}></div>
+            <li className={styles.parent}>
+                <article className={styles.card}>
+                    <div className={styles.glass} aria-hidden="true"></div>
                     <div className={styles.cardContent}>
-                        <div className={styles.iconContainer}>
+                        <figure className={styles.iconContainer} aria-hidden="true">
                             {cardIcon}
-                        </div>
-                        <div className={styles.titleContainer}>
-                            <span className={styles.title}>{cardTitle}</span>
-                        </div>
+                        </figure>
+                        <header className={styles.titleContainer}>
+                            <h3 className={styles.title}>{cardTitle}</h3>
+                        </header>
                         <div className={styles.descriptionContainer}>
-                            <span className={styles.text}>{cardDescription}</span>
+                            <p className={styles.text}>{cardDescription}</p>
                         </div>
                     </div>
-                </div>
-            </div>
+                </article>
+            </li>
         </Fragment>
     )
 }

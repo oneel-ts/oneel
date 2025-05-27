@@ -88,82 +88,88 @@ export default function Projects ({id} : Props) {
     ];
 
     return (
-        <Fragment>
-            <div id={id} className={styles.contentContainer}>
-                <div className={styles.containerBox}>
-                    <div className={styles.containerTitle}>
-                        <h1 className={styles.techTitle}>Projects and Technologies</h1>
-                    </div>
+        <section id={id} className={styles.contentContainer}>
+            <div className={styles.containerBox}>
+                <header className={styles.containerTitle}>
+                    <h2 className={styles.techTitle}>Projects and Technologies</h2>
+                </header>
 
-                    <div className={`${styles.sliderContainer} navigation-wrapper`}>
-                        <div ref={sliderRef} className="keen-slider">
-                            {projects.map((project) => (
-                                <div
-                                    key={project.id}
-                                    className={`keen-slider__slide ${styles.projectSlide}`}
-                                    aria-label={currentSlide === project.id - 1 ? "active slide" : "slide"}
-                                >
-                                    <div className={styles.projectImageContainer}>
-                                        <Image
-                                            width={1280}
-                                            height={0}
-                                            src={project.image.src}
-                                            alt={project.title}
-                                            className={styles.projectImage}
-                                            priority={project.id === 1}
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        {loaded && instanceRef.current && (
-                            <>
-                                <Arrow
-                                    left
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        instanceRef.current?.prev();
-                                    }}
-                                    disabled={isFirstSlide}
-                                />
-
-                                <Arrow
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        instanceRef.current?.next();
-                                    }}
-                                    disabled={isLastSlide}
-                                />
-                            </>
-                        )}
+                <div className={`${styles.sliderContainer} navigation-wrapper`}
+                     role="region"
+                     aria-label="Projetos carrossel"
+                     aria-roledescription="carrossel">
+                    <div ref={sliderRef} className="keen-slider">
+                        {projects.map((project) => (
+                            <article
+                                key={project.id}
+                                className={`keen-slider__slide ${styles.projectSlide}`}
+                                role="group"
+                                aria-roledescription="slide"
+                                aria-label={`${project.title}: ${project.description} (${currentSlide === project.id - 1 ? 'slide atual' : 'slide'} ${project.id} de ${projects.length})`}
+                            >
+                                <figure className={styles.projectImageContainer}>
+                                    <Image
+                                        width={1280}
+                                        height={0}
+                                        src={project.image.src}
+                                        alt={`${project.title} - ${project.description}`}
+                                        className={styles.projectImage}
+                                        priority={project.id === 1}
+                                    />
+                                    <figcaption className="sr-only">{project.title}: {project.description}</figcaption>
+                                </figure>
+                            </article>
+                        ))}
                     </div>
 
                     {loaded && instanceRef.current && (
-                        <div className={styles.dots}>
-                            {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => {
-                                return (
-                                    <button
-                                        key={idx}
-                                        onClick={() => {
-                                            instanceRef.current?.moveToIdx(idx);
-                                        }}
-                                        aria-label={`Go to slide ${idx + 1}`}
-                                        className={`${styles.dot} ${currentSlide === idx ? styles.active : ""}`}
-                                    ></button>
-                                );
-                            })}
-                        </div>
+                        <>
+                            <Arrow
+                                left
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    instanceRef.current?.prev();
+                                }}
+                                disabled={isFirstSlide}
+                            />
+
+                            <Arrow
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    instanceRef.current?.next();
+                                }}
+                                disabled={isLastSlide}
+                            />
+                        </>
                     )}
-                    <div className={styles.skillsSection}>
-                        <div className={styles.containerTitle}>
-                            <h1 className={styles.techTitle}>Skillsets</h1>
-                        </div>
-                        <Skillset/>
-                    </div>
                 </div>
+
+                {loaded && instanceRef.current && (
+                    <nav className={styles.dots} aria-label="Paginação do carrossel">
+                        {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => {
+                            return (
+                                <button
+                                    key={idx}
+                                    onClick={() => {
+                                        instanceRef.current?.moveToIdx(idx);
+                                    }}
+                                    aria-label={`Ir para slide ${idx + 1} ${currentSlide === idx ? '(atual)' : ''}`}
+                                    aria-current={currentSlide === idx ? "true" : "false"}
+                                    className={`${styles.dot} ${currentSlide === idx ? styles.active : ""}`}
+                                ></button>
+                            );
+                        })}
+                    </nav>
+                )}
+
+                <section className={styles.skillsSection}>
+                    <header className={styles.containerTitle}>
+                        <h2 className={styles.techTitle}>Skillsets</h2>
+                    </header>
+                    <Skillset/>
+                </section>
             </div>
-        </Fragment>
+        </section>
     );
 }
 
@@ -174,23 +180,28 @@ function Arrow(props: {
 }) {
     const disabled = props.disabled ? ` ${styles.arrowDisabled}` : "";
     return (
-        <svg
+        <button
+            type="button"
             onClick={props.disabled ? undefined : props.onClick}
             className={`${styles.arrow} ${
                 props.left ? styles.arrowLeft : styles.arrowRight
             }${disabled}`}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            aria-label={props.left ? "Previous slide" : "Next slide"}
-            role="button"
-            aria-disabled={props.disabled}
+            aria-label={props.left ? "Slide anterior" : "Próximo slide"}
+            disabled={props.disabled}
         >
-            {props.left && (
-                <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
-            )}
-            {!props.left && (
-                <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
-            )}
-        </svg>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+            >
+                {props.left && (
+                    <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+                )}
+                {!props.left && (
+                    <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+                )}
+            </svg>
+        </button>
     );
 }

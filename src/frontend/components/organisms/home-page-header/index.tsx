@@ -5,47 +5,58 @@ import Image from "next/image";
 import oneel from "../../../../../public/assets/oneel.png"
 import oneelArrowRigth from "../../../../../public/assets/2-arrow-oneel.png"
 import oneelArrowLeft from "../../../../../public/assets/1-arrow-oneel.png"
+import NavigateBar from "@/src/frontend/components/molecules/navigate-bar";
 
 type Props = {
     handlerOpenForm: () => void;
 }
 
-export default function HeaderDefault({handlerOpenForm} : Props) {
+type TranslateValues = {
+    initialLeft: number;
+    initialRight: number;
+    expandedLeft: number;
+    expandedRight: number;
+}
+
+export default function HeaderDefault({handlerOpenForm}: Props) {
     const [animationState, setAnimationState] = useState<'initial' | 'expanding' | 'finished'>('initial');
     const [isMobile, setIsMobile] = useState(false);
-    const [translateValues, setTranslateValues] = useState({
-        initialLeft: -0,
-        initialRight: 0,
-        expandedLeft: -95,
-        expandedRight: 95
-    });
+    const [translateValues, setTranslateValues] = useState<TranslateValues | null>(null);
+    const [isInitialized, setIsInitialized] = useState(false);
 
     useEffect(() => {
-        const getTranslateValues = () => {
-            if (window.innerWidth <= 768) {
-                return {
+        const checkMobile = () => {
+            const newIsMobile = window.innerWidth <= 768;
+            setIsMobile(newIsMobile);
+
+            const newTranslateValues = newIsMobile
+                ? {
                     initialLeft: 0,
                     initialRight: 0,
                     expandedLeft: -25,
                     expandedRight: 25
-                };
-            } else {
-                return {
+                }
+                : {
                     initialLeft: -20,
                     initialRight: 20,
                     expandedLeft: -95,
                     expandedRight: 95
                 };
-            }
-        };
 
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-            setTranslateValues(getTranslateValues());
+            setTranslateValues(newTranslateValues);
+            setIsInitialized(true);
         };
 
         checkMobile();
         window.addEventListener('resize', checkMobile);
+
+        return () => {
+            window.removeEventListener('resize', checkMobile);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!isInitialized) return;
 
         const timeout = setTimeout(() => {
             setAnimationState('expanding');
@@ -57,16 +68,20 @@ export default function HeaderDefault({handlerOpenForm} : Props) {
 
         return () => {
             clearTimeout(timeout);
-            window.removeEventListener('resize', checkMobile);
         };
-    }, []);
+    }, [isInitialized]);
+
+    if (!translateValues) {
+        return null;
+    }
 
     return (
+
         <Fragment>
-            <section className={styles.containerPage}>
+            <div className={styles.containerPage}>
                 <header className={styles.containerHeader}>
-                    <div className={styles.animationContainer}>
-                        <div
+                    <figure className={styles.animationContainer}>
+                        <figure
                             className={styles.centralImage}
                             style={{
                                 opacity: animationState === 'initial' ? 0 : 1,
@@ -75,13 +90,13 @@ export default function HeaderDefault({handlerOpenForm} : Props) {
                         >
                             <Image
                                 src={oneel}
-                                alt={"oneel"}
+                                alt={"Logo da Oneel"}
                                 width={isMobile ? 60 : 220}
                                 height={isMobile ? 120 : 480}
-                                style={{borderRadius:"16px"}}
+                                style={{borderRadius: "16px"}}
                             />
-                        </div>
-                        <div
+                        </figure>
+                        <figure
                             className={styles.leftArrow}
                             style={{
                                 transform: animationState !== 'initial'
@@ -91,13 +106,15 @@ export default function HeaderDefault({handlerOpenForm} : Props) {
                                 transition: 'transform 1s ease-in-out, opacity 0.5s ease-in-out'
                             }}
                         >
-                            <Image src={oneelArrowLeft} alt={"oneel"}
-                                   width={isMobile ? 40 : 100}
-                                   height={isMobile ? 200 : 480}
-                                   style={{borderRadius:"16px"}}
+                            <Image
+                                src={oneelArrowLeft}
+                                alt={"Seta esquerda da animação"}
+                                width={isMobile ? 40 : 100}
+                                height={isMobile ? 200 : 480}
+                                style={{borderRadius: "16px"}}
                             />
-                        </div>
-                        <div
+                        </figure>
+                        <figure
                             className={styles.rightArrow}
                             style={{
                                 transform: animationState !== 'initial'
@@ -107,17 +124,19 @@ export default function HeaderDefault({handlerOpenForm} : Props) {
                                 transition: 'transform 1s ease-in-out, opacity 0.5s ease-in-out'
                             }}
                         >
-                            <Image src={oneelArrowRigth} alt={"oneel"}
-                                   width={isMobile ? 40 : 100}
-                                   height={isMobile ? 200 : 480}
-                                   style={{borderRadius:"16px"}}
+                            <Image
+                                src={oneelArrowRigth}
+                                alt={"Seta direita da animação"}
+                                width={isMobile ? 40 : 100}
+                                height={isMobile ? 200 : 480}
+                                style={{borderRadius: "16px"}}
                             />
-                        </div>
-                    </div>
-                    {/*{!isMobile && <NavigateBar />}*/}
+                        </figure>
+                    </figure>
+                    {!isMobile && <NavigateBar/>}
                     <ButtonContactUs handlerOpenForm={handlerOpenForm}/>
                 </header>
-            </section>
+            </div>
         </Fragment>
     )
 }
