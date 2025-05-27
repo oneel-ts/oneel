@@ -1,4 +1,4 @@
-import {Fragment, useState} from "react";
+import {useState} from "react";
 import styles from "./skillset.module.css";
 import react from "../../../../../public/assets/skills-logo/Reactmini.svg";
 import javascript from "../../../../../public/assets/skills-logo/javascript.svg";
