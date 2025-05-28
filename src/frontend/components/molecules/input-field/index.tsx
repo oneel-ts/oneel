@@ -8,9 +8,10 @@ type Props = {
     fieldIcon: React.ReactNode;
     value: any;
     onChange: (value: string) => void;
+    id?: string;
 }
 
-export default function InputField ({nameField, typeInput, placeholder, fieldIcon, value, onChange} : Props) {
+export default function InputField ({nameField, typeInput, placeholder, fieldIcon, value, onChange, id} : Props) {
     const inputValue = value === null ? '' : value;
     const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
     const [isPhoneValid, setIsPhoneValid] = useState<boolean>(true);
@@ -67,7 +68,7 @@ export default function InputField ({nameField, typeInput, placeholder, fieldIco
     return (
         <Fragment>
             <div className={styles.containerBoxInput}>
-                <h1 className={styles.title}>
+                <h1 id={id} className={styles.title}>
                     {nameField}
                 </h1>
                 <div className={styles.inputWrapper}>

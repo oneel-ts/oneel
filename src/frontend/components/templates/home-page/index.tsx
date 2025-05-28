@@ -41,7 +41,7 @@ export default function Brands() {
     const handlerOpenForm = () => {
         const formElement = document.getElementById("form");
         if (formElement) {
-            formElement.scrollIntoView({ behavior: "smooth" });
+            formElement.scrollIntoView({ behavior: "smooth", block: "center" });
         }
     };
 

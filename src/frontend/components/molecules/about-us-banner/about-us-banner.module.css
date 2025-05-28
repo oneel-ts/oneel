@@ -30,7 +30,7 @@
     position: relative;
 }
 
-.header h1 {
+.header h2 {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
@@ -128,7 +128,7 @@
 
 .sectionTitle {
     font-size: 1.8rem;
-    color: #0FD4C1;
+    color: #ffffff;
     margin-bottom: 1.5rem;
     display: flex;
     align-items: center;

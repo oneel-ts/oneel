@@ -211,7 +211,7 @@ export default function ContactUsForm({id}: Props) {
                                     <cite className={styles.authorName}>Renata</cite>
                                     <p className={styles.authorCompany}>King Bites</p>
                                 </div>
-                                <figure className={styles.authorImageContainer}>
+                                <figure  className={styles.authorImageContainer}>
                                     <Image
                                         src={kingbites}
                                         alt="Logo da King Bites"
@@ -225,7 +225,7 @@ export default function ContactUsForm({id}: Props) {
                     </blockquote>
                 </aside>
 
-                <section id={id} className={styles.formColumn}>
+                <section className={styles.formColumn}>
                     <article className={styles.containerModal}>
                         <header className={styles.miniHeaderModal}>
                             <h2>Request Form</h2>
@@ -271,6 +271,8 @@ export default function ContactUsForm({id}: Props) {
                                     fieldIcon={<LocalPhoneIcon/>}
                                     value={formData.telephone}
                                     onChange={(value) => handleInputChange('telephone', value)}
+                                    id={id}
+
                                 />
                             </fieldset>
                             <fieldset className={styles.formFieldContainer}>
