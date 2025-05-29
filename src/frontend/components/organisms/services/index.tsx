@@ -73,7 +73,7 @@ export default function Services({id}: Props) {
 
     return (
         <Fragment>
-            <div id={id} className={styles.containerContent}>
+            <div className={styles.containerContent}>
                 <div className={styles.containerBox}>
                     <div className={styles.containerTitle}>
                         <h1 className={`${styles.technologicalTitle} ${poppins.className}`}>Integrated Technological Solutions for Your Business</h1>
@@ -81,7 +81,7 @@ export default function Services({id}: Props) {
 
                     <div className={styles.servicesGrid}>
                         {services.map((service, index) => (
-                            <div key={index} className={styles.serviceCard}>
+                            <div id={id} key={index} className={styles.serviceCard}>
                                 <div className={styles.serviceIcon}>
                                     {service.icon}
                                 </div>

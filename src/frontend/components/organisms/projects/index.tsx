@@ -88,13 +88,13 @@ export default function Projects ({id} : Props) {
     ];
 
     return (
-        <section id={id} className={styles.contentContainer}>
+        <section className={styles.contentContainer}>
             <div className={styles.containerBox}>
                 <header className={styles.containerTitle}>
                     <h2 className={styles.techTitle}>Projects and Technologies</h2>
                 </header>
 
-                <div className={`${styles.sliderContainer} navigation-wrapper`}
+                <div id={id} className={`${styles.sliderContainer} navigation-wrapper`}
                      role="region"
                      aria-label="Projetos carrossel"
                      aria-roledescription="carrossel">
